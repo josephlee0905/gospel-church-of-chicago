@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-label="Photo: our church family">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2F6A54"/>
+      <stop offset="100%" stop-color="#9CBFAE"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#g)"/>
+  <g fill="#FBF7F0" opacity="0.22">
+    <path d="M96 1000 v-420 a136 136 0 0 1 272 0 v420 z"/>
+    <path d="M496 1000 v-300 a88 88 0 0 1 176 0 v300 z"/>
+  </g>
+  <circle cx="640" cy="220" r="104" fill="#FBF7F0" opacity="0.16"/>
+</svg>

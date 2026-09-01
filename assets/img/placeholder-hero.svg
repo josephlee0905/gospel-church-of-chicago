@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Photo: the congregation gathered">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3E7C66"/>
+      <stop offset="100%" stop-color="#C2A275"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#g)"/>
+  <g fill="#FBF7F0" opacity="0.22">
+    <path d="M192 900 v-378 a272 272 0 0 1 544 0 v378 z"/>
+    <path d="M992 900 v-270 a176 176 0 0 1 352 0 v270 z"/>
+  </g>
+  <circle cx="1280" cy="198" r="117" fill="#FBF7F0" opacity="0.16"/>
+</svg>

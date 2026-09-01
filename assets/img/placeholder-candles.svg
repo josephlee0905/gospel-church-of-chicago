@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-label="Photo: Christmas Eve service">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#A75B37"/>
+      <stop offset="100%" stop-color="#D9A87B"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="600" fill="url(#g)"/>
+  <g fill="#FBF7F0" opacity="0.22">
+    <path d="M108 600 v-252 a153 153 0 0 1 306 0 v252 z"/>
+    <path d="M558 600 v-180 a99 99 0 0 1 198 0 v180 z"/>
+  </g>
+  <circle cx="720" cy="132" r="78" fill="#FBF7F0" opacity="0.16"/>
+</svg>
