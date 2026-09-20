@@ -1,4 +1,7 @@
-# Checks the website, then publishes it to GitHub Pages.
+# Checks the website, then publishes it.
+#
+#   main branch      ->  the live site (and the church's domain, once set up)
+#   any other branch ->  a preview at  <site>/preview/<branch-name>/
 #
 # If the check fails, nothing is published and the live site keeps working.
 # Whoever made the change gets an email explaining what went wrong.
@@ -9,9 +12,9 @@ name: Check and publish
 
 on:
   push:
-    branches: [main]
+    branches: ["**"]
   pull_request:
-  workflow_dispatch:        # lets you publish any branch by hand, to preview it
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -31,7 +34,7 @@ jobs:
       - run: node .github/check-site.mjs
 
   publish:
-    name: Publish to GitHub Pages
+    name: Publish
     needs: check                                   # only runs if the check passed
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
@@ -39,10 +42,63 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
+      # The live site is always whatever is on main.
+      - name: Get the live site
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: site
+
+      # A branch that is not main also gets a preview folder inside it.
+      - name: Get this branch
+        if: github.ref_name != 'main'
+        uses: actions/checkout@v4
+        with:
+          path: branch
+
+      - name: Build the preview folder
+        if: github.ref_name != 'main'
+        env:
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          slug="$(echo "$BRANCH" | tr '/' '-' | tr -cd 'A-Za-z0-9._-')"
+          echo "PREVIEW_SLUG=$slug" >> "$GITHUB_ENV"
+          mkdir -p "site/preview/$slug"
+          cp -r branch/. "site/preview/$slug/"
+          # Leave out things that do not belong on a published site.
+          rm -rf "site/preview/$slug/.git" "site/preview/$slug/.github" \
+                 "site/preview/$slug/preview"
+          rm -f "site/preview/$slug"/*.pptx
+          # Keep previews out of search results.
+          find "site/preview/$slug" -name '*.html' -print0 | xargs -0 sed -i \
+            's|<meta charset="utf-8">|<meta charset="utf-8">\n<meta name="robots" content="noindex, nofollow">|'
+          echo "Preview built for branch '$BRANCH' at /preview/$slug/"
+
+      - name: Remove files that should not be served
+        run: rm -f site/*.pptx
+
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:
-          path: "."
+          path: site
       - id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Where to look
+        env:
+          BRANCH: ${{ github.ref_name }}
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          if [ "$BRANCH" = "main" ]; then
+            echo "### Live site updated" >> "$GITHUB_STEP_SUMMARY"
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo "$PAGE_URL" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "### Preview ready" >> "$GITHUB_STEP_SUMMARY"
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo "Branch \`$BRANCH\`:" >> "$GITHUB_STEP_SUMMARY"
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo "${PAGE_URL}preview/${PREVIEW_SLUG}/" >> "$GITHUB_STEP_SUMMARY"
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo "The live site at the root is unchanged." >> "$GITHUB_STEP_SUMMARY"
+          fi

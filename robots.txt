@@ -1,0 +1,4 @@
+# Drafts under /preview/ are work in progress and should not appear in search
+# results. The live site is everything else.
+User-agent: *
+Disallow: /preview/

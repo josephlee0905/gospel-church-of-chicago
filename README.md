@@ -4,9 +4,9 @@ The website for Gospel Church of Chicago — English-first, with a short Korean
 section — built from the project brief in
 `GCC_Website_Project_Brief_Aug30_v4.pptx`.
 
-**For volunteers updating the site, everything you need is in
-[EDITING.md](EDITING.md).** For moving the site to Squarespace — which plan
-to buy and how to port the content — see [MIGRATION.md](MIGRATION.md).
+**Updates are made by asking Claude Code.** The guide it follows is
+[CLAUDE.md](CLAUDE.md). [EDITING.md](EDITING.md) explains the same changes
+for anyone who would rather edit the files by hand.
 
 ---
 
@@ -27,8 +27,8 @@ hosted platform.
 **Source** to *GitHub Actions*. Every change pushed to `main` is then checked
 and published automatically, and the site appears at
 `https://<owner>.github.io/gospel-church-of-chicago/` within a minute or two.
-To preview a branch before merging it, open the **Actions** tab, choose
-*Check and publish*, and run it against that branch.
+Pushing any other branch publishes a draft under `/preview/` instead, leaving
+the live site untouched — see *Publishing* below.
 
 Every link on the site is relative, so it works both from that sub-folder and
 from a custom domain at the root, with no configuration either way.
@@ -70,7 +70,7 @@ to the eight in the sketch.
 index.html … contact.html   One file per page. Page text lives here.
 ko/index.html               The Korean page.
 404.html                    Shown for a mistyped address.
-assets/css/styles.css       Every colour, font and spacing rule.
+assets/css/styles.css       Every color, font and spacing rule.
 assets/js/site.js           SETTINGS + the shared header and footer.
 assets/js/events.js         The event list.
 assets/img/                 Photographs (placeholders for now).
@@ -113,8 +113,23 @@ still needs to provide.
 
 ## Publishing
 
-`.github/workflows/publish.yml` checks the site before publishing it, and
-`.github/check-site.mjs` is the check itself. It confirms that:
+Two destinations, from one repository:
+
+| Branch | Where it goes |
+| --- | --- |
+| `main` | The live site, and the church's domain once it is connected |
+| any other branch | A private draft at `<site>/preview/<branch-name>/` |
+
+A branch name's `/` becomes `-`, so `update/service-time` previews at
+`/preview/update-service-time/`. Only one preview exists at a time — pushing
+a different branch replaces it. Previews carry a `noindex` tag and are
+excluded in `robots.txt`, so they stay out of search results.
+
+This is why nothing is edited on `main` directly: a change is pushed to a
+branch, looked at on the preview link, and only then merged.
+
+`.github/workflows/publish.yml` runs the check before publishing either one,
+and `.github/check-site.mjs` is the check itself. It confirms that:
 
 - `site.js` and `events.js` can still be read by a browser — a missing comma
   or quotation mark here would otherwise leave every page without its menu
@@ -174,31 +189,13 @@ site "primarily directed at facilitating commercial transactions." A church
 information site whose Give page *links out* to a giving platform is well
 within that. Do not add a store.
 
-## Moving to Squarespace later
+## If the church ever moves to a hosted platform
 
-This site is a working preview, not a lock-in. It maps onto Squarespace
-directly:
+Nothing here locks the church in. Each page is ordinary headings, paragraphs,
+and images, so the content pastes into Squarespace, Wix, or anything similar;
+the settings at the top of `site.js` are the same fields those platforms ask
+for at setup; the events fields match a native events collection one for one;
+and the sermon playlist, contact form, and map are native blocks everywhere.
 
-- **Content** — each page here becomes one Squarespace page. The sections are
-  ordinary blocks of headings, paragraphs, and images, so they paste straight
-  into Squarespace's editor.
-- **Settings** — the values at the top of `assets/js/site.js` are exactly the
-  fields Squarespace asks for during setup (business address, contact
-  details, social links).
-- **Sermons** — the same YouTube playlist ID goes into a Squarespace video
-  block.
-- **Events** — Squarespace has a native Events collection; the fields in
-  `assets/js/events.js` (title, date, time, location, description, image,
-  link) match it one for one.
-- **Contact form and map** — both are native Squarespace blocks, so the
-  form service in the settings file is no longer needed.
-- **한국어** — Squarespace handles a secondary language as an additional
-  page, which is how it is built here.
-
-The brief recommends a church template such as *Cove* or *Safe Haven*. The
-design in this repository — warm evergreen and sand, serif headings, arched
-photographs — was drawn to sit comfortably inside either of them.
-
-[MIGRATION.md](MIGRATION.md) has the full runbook: which plan to buy, the
-order to do the work in, and a block-by-block mapping from these files onto
-Squarespace.
+Pointing the domain elsewhere is a DNS change, so the decision stays
+reversible.

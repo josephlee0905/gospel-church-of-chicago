@@ -1,8 +1,11 @@
 # How to update the website
 
-You do not need to be a programmer to keep this website up to date. Almost
-everything is changed by editing a single file and typing between the
-quotation marks.
+**The simplest way to update this site is to ask Claude Code.** Describe the
+change in plain language — "change the service time to 11:00 AM", "add the
+Christmas Eve service on December 24th at 6pm" — and it will make the change,
+check it, and send you a link to look at before anything goes live.
+
+This guide is for making the same changes by hand, if you would rather.
 
 You can make every change below directly on GitHub:
 
@@ -117,7 +120,7 @@ or delete a whole block to remove one. The layout rearranges itself.
 
 ## Replacing the photographs
 
-The pictures on the site right now are coloured placeholders. To use a real
+The pictures on the site right now are colored placeholders. To use a real
 photo, save it into the `assets/img/` folder and change the file name in the
 page. For example, in `index.html`:
 
@@ -163,9 +166,9 @@ The home page photo is set slightly differently, near the top of
 
 ---
 
-## Changing the colours
+## Changing the colors
 
-Open `assets/css/styles.css`. The first block of the file lists every colour
+Open `assets/css/styles.css`. The first block of the file lists every color
 used on the site. Changing a value there changes it everywhere.
 
 ```css

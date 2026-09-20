@@ -25,7 +25,7 @@ disappears.
       ministries
 - [ ] **Missions** — regions served, missionary and partner names, and two
       recent updates
-- [ ] **Give** — the church's legal name for cheques, tax-deductibility, and
+- [ ] **Give** — the church's legal name for checks, tax-deductibility, and
       whether designated giving is offered
 - [ ] **Events** — the regular weekly prayer meeting and Bible study times
 - [ ] **한국어** — the pastor's greeting, three church prayer requests, and
