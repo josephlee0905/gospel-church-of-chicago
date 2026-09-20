@@ -23,13 +23,15 @@ hosted platform.
 
 ## Previewing it
 
-**On GitHub Pages** — in this repository, go to **Settings → Pages**, set
-**Source** to *Deploy from a branch*, choose the branch you want to preview
-and the `/ (root)` folder, and save. The site appears at
+**On GitHub Pages** — in this repository, go to **Settings → Pages** and set
+**Source** to *GitHub Actions*. Every change pushed to `main` is then checked
+and published automatically, and the site appears at
 `https://<owner>.github.io/gospel-church-of-chicago/` within a minute or two.
+To preview a branch before merging it, open the **Actions** tab, choose
+*Check and publish*, and run it against that branch.
 
-Every link on the site is relative, so it works from that sub-folder without
-any configuration.
+Every link on the site is relative, so it works both from that sub-folder and
+from a custom domain at the root, with no configuration either way.
 
 **On your own computer** — open `index.html` in a browser. Sermons, events,
 and the map need a small local server rather than a bare file, so for the
@@ -72,6 +74,7 @@ assets/css/styles.css       Every colour, font and spacing rule.
 assets/js/site.js           SETTINGS + the shared header and footer.
 assets/js/events.js         The event list.
 assets/img/                 Photographs (placeholders for now).
+.github/                    The automatic check. Nothing to edit here.
 ```
 
 Three ideas keep maintenance low:
@@ -86,6 +89,8 @@ Three ideas keep maintenance low:
 3. **Events expire on their own.** Each event carries a date, and the site
    only ever shows events still to come. Nothing has to be tidied up after
    Christmas.
+4. **A broken edit cannot take the site down.** Every change is checked before
+   it goes live — see *Publishing* below.
 
 Anything not yet supplied by the church is written in `[square brackets]` and
 highlighted in sand on the live site, so unfinished content is obvious in a
@@ -105,6 +110,69 @@ still needs to provide.
 - **No external fonts or libraries.** The site uses fonts already on the
   reader's device, so there is nothing to keep up to date and nothing that
   can break when a third party changes.
+
+## Publishing
+
+`.github/workflows/publish.yml` checks the site before publishing it, and
+`.github/check-site.mjs` is the check itself. It confirms that:
+
+- `site.js` and `events.js` can still be read by a browser — a missing comma
+  or quotation mark here would otherwise leave every page without its menu
+  and footer;
+- every page still loads the stylesheet, the settings, and the shared header
+  and footer;
+- every link and image points at a file that exists.
+
+**If any of that fails, nothing is published and the live site keeps
+working.** Whoever made the change gets an email explaining what went wrong.
+This is what makes the site safe for a volunteer to edit directly.
+
+It also reports how many `[placeholders]` are still unfilled, as a note
+rather than a failure.
+
+To run the same check yourself before pushing:
+
+```
+node .github/check-site.mjs
+```
+
+## Using the church's own domain
+
+GitHub Pages serves a custom domain for free, with an HTTPS certificate it
+issues and renews automatically — which is what the current site at
+`gospelchurch1.com` is missing.
+
+1. **At the domain registrar**, point the domain at GitHub:
+
+   | Record | Name | Value |
+   | --- | --- | --- |
+   | A | `@` | `185.199.108.153` |
+   | A | `@` | `185.199.109.153` |
+   | A | `@` | `185.199.110.153` |
+   | A | `@` | `185.199.111.153` |
+   | CNAME | `www` | `<owner>.github.io` |
+
+   If the registrar supports `ALIAS` or `ANAME` records, one of those pointed
+   at `<owner>.github.io` can replace the four A records.
+
+2. **Add a file named `CNAME`** in the root of this repository containing
+   nothing but the domain, e.g. `gospelchurch1.com`. It has no file
+   extension.
+
+3. **In Settings → Pages**, enter the domain under *Custom domain*, wait for
+   the DNS check to pass, then tick **Enforce HTTPS**. The certificate can
+   take a few minutes to issue.
+
+DNS changes can take up to an hour to take effect. Leave the old site running
+for a week or so afterward.
+
+**This is reversible in minutes.** Pointing the same records somewhere else
+later — including at Squarespace — is the only step needed to move.
+
+One limit worth knowing: GitHub's terms do not allow Pages to be used for a
+site "primarily directed at facilitating commercial transactions." A church
+information site whose Give page *links out* to a giving platform is well
+within that. Do not add a store.
 
 ## Moving to Squarespace later
 

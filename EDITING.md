@@ -189,12 +189,21 @@ Sermons page, so sermons are never uploaded twice.
 
 ---
 
-## If something looks wrong
+## You cannot break the website
 
-Every change is saved in this repository's history, so nothing is ever lost.
-On GitHub, open the file, click **History**, find the version from before
-your change, and restore it.
+Every change is checked automatically before it goes live. If something is
+wrong — a missing comma, a missing quotation mark, a link to a page that does
+not exist — **the change is simply not published, and the website carries on
+exactly as it was.** You will get an email saying what went wrong and which
+line to look at.
 
-The most common cause of a page going blank is a missing quotation mark or
-comma in `assets/js/site.js` or `assets/js/events.js`. Compare your line with
-the ones around it — they should look identical apart from the words.
+So there is no way to make an edit that takes the site down. The worst that
+happens is that your change does not appear and you get an email about it.
+
+The most common cause is a missing quotation mark or comma in
+`assets/js/site.js` or `assets/js/events.js`. Compare your line with the ones
+around it — they should look identical apart from the words.
+
+Every change is also saved in this repository's history, so nothing is ever
+lost. On GitHub, open the file, click **History**, find the version from
+before your change, and restore it.

@@ -67,11 +67,20 @@ This repository already runs free on GitHub Pages, with HTTPS included. Over
 five years, Squarespace costs roughly **$1,000–1,750** against roughly **$75**
 for a domain name alone.
 
-What that money buys is a visual editor and independence from anyone who
-understands HTML. For a church relying on volunteers who turn over, that is
-usually worth it — the brief reached the same conclusion, and this document
-assumes it. But it is worth saying out loud, because the difference is a
-meaningful line in a small church's budget.
+What that money buys is a visual editor and a support line — not capability.
+The site is finished either way.
+
+**So the honest recommendation is: do not pay for Squarespace yet.** Point
+the domain at GitHub Pages, which takes about fifteen minutes and is set out
+in [README.md](README.md#using-the-churchs-own-domain). Let real volunteers
+try editing it for a few months. If they manage, the money is saved. If they
+bounce off it, come back to this document — nothing here expires, and the
+content will be further along by then.
+
+The one thing Squarespace genuinely solves is succession: the risk that
+whoever set this up moves on and nobody left can change a service time. That
+is a real risk, but it is a *future* risk, and paying for it in advance of
+evidence is the expensive way to handle it.
 
 ---
 
@@ -89,9 +98,9 @@ page here is finished prose in a finished structure. Porting is copying
 settled text into a visual editor, one page at a time. For nine pages, expect
 **a long afternoon**, not a project.
 
-This is also why the freelance budget in the brief ($300–600) should land at
-the low end: whoever does the setup is not writing content or designing a
-structure, only rebuilding one that exists.
+If you are doing this yourself, budget an afternoon rather than an hour.
+Nine pages with events, embeds, a form and a map is not a sub-hour job, even
+with the content already written.
 
 ### Before anything else: find out who controls the domain
 

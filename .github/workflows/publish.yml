@@ -1,0 +1,48 @@
+# Checks the website, then publishes it to GitHub Pages.
+#
+# If the check fails, nothing is published and the live site keeps working.
+# Whoever made the change gets an email explaining what went wrong.
+#
+# One-time setup: Settings -> Pages -> Source -> "GitHub Actions".
+
+name: Check and publish
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:        # lets you publish any branch by hand, to preview it
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  check:
+    name: Check the site
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: node .github/check-site.mjs
+
+  publish:
+    name: Publish to GitHub Pages
+    needs: check                                   # only runs if the check passed
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: "."
+      - id: deployment
+        uses: actions/deploy-pages@v4
