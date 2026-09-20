@@ -128,6 +128,11 @@ A branch name's `/` becomes `-`, so `update/service-time` previews at
 a different branch replaces it. Previews carry a `noindex` tag and are
 excluded in `robots.txt`, so they stay out of search results.
 
+The live site is currently kept out of search results too, by a `Disallow: /`
+line in `robots.txt`, because the pages still contain placeholders. Deleting
+that one line turns search engines on; `CONTENT-CHECKLIST.md` section 6
+explains when to do it.
+
 This is why nothing is edited on `main` directly: a change is pushed to a
 branch, looked at on the preview link, and only then merged.
 

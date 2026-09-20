@@ -1,4 +1,24 @@
+# ==========================================================================
+# SEARCH ENGINES ARE TURNED OFF WHILE THE SITE IS UNFINISHED
+#
+# The line "Disallow: /" below hides the whole site from Google and other
+# search engines. It is there on purpose: the site is live so it can be
+# looked at and shared by link, but pages still show placeholders such as
+# [Sunday service time] and [Street address], and those should not be what
+# someone finds when they search for the church by name.
+#
+# TO TURN SEARCH ENGINES ON, once the real details are in:
+#   1. Delete the "Disallow: /" line below.
+#   2. Save. The site republishes itself within a minute or two.
+# Leave the "Disallow: /preview/" line alone -- that one hides drafts and
+# should stay for good.
+#
+# The checklist of what to fill in first is in CONTENT-CHECKLIST.md.
+# ==========================================================================
+
+User-agent: *
+Disallow: /
+
 # Drafts under /preview/ are work in progress and should not appear in search
 # results. The live site is everything else.
-User-agent: *
 Disallow: /preview/

@@ -4,6 +4,11 @@ Everything below appears on the site as `[bracketed text]`, highlighted in
 sand, until it is filled in. Work down the list and the highlighting
 disappears.
 
+**The site is live, but hidden from Google on purpose** until this list is
+done, so nobody searching for the church finds `[Sunday service time]`. See
+[section 6](#6-turn-search-engines-back-on) for the one line to delete when
+you are ready.
+
 ## 1. Service and contact details — `assets/js/site.js`
 
 - [ ] Sunday service time, in English and in Korean
@@ -63,3 +68,21 @@ church — not an individual — holds:
 - [ ] Bulletins (주보) — publish them on the site, or not?
 - [ ] Photo gallery — include one, or not?
 - [ ] Church email address — set one up to replace personal addresses
+
+## 6. Turn search engines back on
+
+This is the last step, once section 1 is done and the pages read the way the
+church wants them to.
+
+The site is published and anyone with the link can see it, but `robots.txt`
+currently tells Google and every other search engine to skip the whole site.
+That is deliberate: a half-finished page is worse than no page when someone
+searches for the church by name.
+
+- [ ] Open `robots.txt` and delete the line that reads `Disallow: /`
+- [ ] Leave the `Disallow: /preview/` line in place — that one hides drafts
+      and should stay for good
+- [ ] Save. The site republishes itself within a minute or two
+
+Search engines take days to weeks to notice a new site, so do this a little
+before you want the church to start showing up in results.
