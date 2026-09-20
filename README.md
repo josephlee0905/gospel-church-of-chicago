@@ -107,9 +107,12 @@ still needs to provide.
 - **No contact-form server.** The form posts to a free form service named in
   the settings file. Until one is set, the page shows an email address
   instead of a form that would silently fail.
-- **No external fonts or libraries.** The site uses fonts already on the
-  reader's device, so there is nothing to keep up to date and nothing that
-  can break when a third party changes.
+- **No dependencies at all.** No packages, no build step, no frameworks, no
+  CDN scripts, no web fonts. The site uses fonts already on the reader's
+  device. There is nothing to keep up to date, nothing to patch, and nothing
+  that can break or be taken over when someone else's server changes.
+  **This is enforced**: the check refuses to publish if a dependency file, an
+  outside script or font, an unapproved embed, or `eval()` appears.
 
 ## Publishing
 
@@ -136,7 +139,9 @@ and `.github/check-site.mjs` is the check itself. It confirms that:
   and footer;
 - every page still loads the stylesheet, the settings, and the shared header
   and footer;
-- every link and image points at a file that exists.
+- every link and image points at a file that exists;
+- no third-party code has crept in — no dependency files, no scripts or fonts
+  from other servers, no embeds beyond YouTube and Google Maps, no `eval()`.
 
 **If any of that fails, nothing is published and the live site keeps
 working.** Whoever made the change gets an email explaining what went wrong.

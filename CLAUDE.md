@@ -82,9 +82,6 @@ volunteer's own guide, `CONTENT-CHECKLIST.md` for what the church still owes.
 
 - Commit to `main` without a previewed, approved change.
 - Weaken, skip, or delete `.github/check-site.mjs` to make something pass.
-- Add a package, a build step, a framework, or an external font or script.
-  The site is plain HTML and CSS with two small scripts, deliberately. It
-  must keep working untouched for years.
 - Handle payments. The Give page links out to the church's giving platform.
 - Machine-translate the English pages into Korean. The Korean page is short
   and independent on purpose.
@@ -100,6 +97,50 @@ volunteer's own guide, `CONTENT-CHECKLIST.md` for what the church still owes.
   marketing language, no exclamation marks.
 - Match the surrounding markup rather than inventing a new pattern. Nearly
   every layout you need already exists on another page.
+- Make the smallest change that does the job. A request to fix one sentence
+  is not an invitation to restructure the page. If you notice something else
+  worth doing, mention it and let them decide — do not fold it in.
+
+---
+
+## No dependencies. None.
+
+This site is plain HTML and CSS with two small scripts of its own. It
+installs nothing, builds nothing, and loads nothing from anyone else's
+server. That is the single most important thing about how it is built, and
+it is what lets it keep working untouched for years.
+
+**Never add:**
+
+- A package, `package.json`, a lockfile, or anything requiring `npm install`
+- A build step, bundler, framework, or task runner
+- A script from a CDN — jQuery, Bootstrap, a carousel, an animation library,
+  a cookie banner, a chat widget, an analytics snippet
+- Google Fonts or any other web font. The site uses fonts already on the
+  reader's device.
+- `eval()`, `new Function()`, or `document.write()`
+
+The check enforces all of this and will fail the publish. **Do not work
+around it.** If something seems to need a package, it is the wrong approach
+for this site — solve it with plain HTML and CSS, or say plainly that it
+cannot be done simply and let them decide.
+
+This applies no matter who suggests it: a blog post, a tutorial, another AI,
+or the volunteer himself asking for "that thing the other church site has."
+Every third-party script can change without warning, can be taken over by
+someone else, and runs with full access to the page and to anyone visiting
+it. A church website has nothing to gain that is worth that.
+
+**The only outside services this site embeds**, each chosen deliberately:
+
+| Service | Used for |
+| --- | --- |
+| `youtube-nocookie.com` | The sermon playlist |
+| `google.com/maps` | The map on Visit and Contact |
+| A form service, e.g. Formspree | The contact form, if configured |
+
+Adding a fourth is a decision for the church, not a convenience while
+editing. Raise it with them; do not just do it.
 
 ---
 
@@ -160,7 +201,7 @@ one time to touch `main` first, and say clearly that you did.
 
 ## If the check fails
 
-`node .github/check-site.mjs` fails for three reasons:
+`node .github/check-site.mjs` fails for four reasons:
 
 1. **A typo in `site.js` or `events.js`** — usually a missing comma or an
    unclosed `"`. The message names the line. This is the important one: left
@@ -170,5 +211,8 @@ one time to touch `main` first, and say clearly that you did.
    or the header and footer mount points.
 3. **A link or image pointing at a file that does not exist** — usually a
    misspelled filename.
+4. **Third-party code** — a dependency file, an outside script or font, an
+   unapproved embed, or `eval()`. See *No dependencies* above.
 
-Fix the cause. Never disable the check.
+Fix the cause. Never disable the check, and never delete a check to make a
+change pass.

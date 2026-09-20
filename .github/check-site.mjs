@@ -90,7 +90,90 @@ for (const page of pages) {
   }
 }
 
-/* --- 4. Count what is still waiting for real content --------------------- */
+/* --- 4. Nothing third-party may creep in ---------------------------------
+   This site runs on plain HTML and CSS with two small scripts of its own.
+   It has no dependencies, and it must stay that way: anything loaded from
+   somebody else's server can change without warning, can be taken over, and
+   runs with full access to the page. The rules below make that hard to undo
+   by accident.                                                            */
+
+// The only outside services this site is allowed to embed. Each was a
+// deliberate choice. Adding a fourth is a decision for the church, not a
+// convenience for whoever is editing.
+const ALLOWED_EMBEDS = [
+  "www.youtube-nocookie.com",  // sermon playlist
+  "www.youtube.com",           // sermon playlist (fallback form)
+  "www.google.com",            // the map on the Visit and Contact pages
+];
+
+const DEPENDENCY_FILES = [
+  "package.json", "package-lock.json", "yarn.lock", "pnpm-lock.yaml",
+  "bower.json", "composer.json", "Gemfile", "requirements.txt",
+];
+
+for (const file of DEPENDENCY_FILES) {
+  if (existsSync(file)) {
+    problems.push(
+      `${file} should not exist. This site has no dependencies on purpose — ` +
+      `whatever needed it should be done with plain HTML and CSS instead.`
+    );
+  }
+}
+if (existsSync("node_modules")) {
+  problems.push("node_modules should not exist. This site installs nothing.");
+}
+
+// Scripts and stylesheets must come from this repository, never from
+// somebody else's server.
+const EXTERNAL_SCRIPT = /<script[^>]+src="((?:https?:)?\/\/[^"]+)"/gi;
+const EXTERNAL_STYLE = /<link[^>]+href="((?:https?:)?\/\/[^"]+)"[^>]*>/gi;
+const IFRAME = /<iframe[^>]+src="([^"]+)"/gi;
+
+for (const page of pages) {
+  const html = readFileSync(page, "utf8");
+
+  for (const [, url] of html.matchAll(EXTERNAL_SCRIPT)) {
+    problems.push(
+      `${page} loads a script from another server: ${url}\n    ` +
+      `Outside scripts are not allowed. Remove it.`
+    );
+  }
+
+  for (const [tag, url] of html.matchAll(EXTERNAL_STYLE)) {
+    if (/rel="(stylesheet|preload|modulepreload)"/i.test(tag)) {
+      problems.push(
+        `${page} loads a stylesheet or font from another server: ${url}\n    ` +
+        `The site uses fonts already on the reader's device. Remove it.`
+      );
+    }
+  }
+
+  for (const [, url] of html.matchAll(IFRAME)) {
+    if (!/^(https?:)?\/\//.test(url)) continue;
+    const host = url.replace(/^(https?:)?\/\//, "").split("/")[0];
+    if (!ALLOWED_EMBEDS.includes(host)) {
+      problems.push(
+        `${page} embeds content from ${host}, which is not on the approved ` +
+        `list (${ALLOWED_EMBEDS.join(", ")}).\n    Adding a new outside ` +
+        `service is a decision for the church.`
+      );
+    }
+  }
+}
+
+// Code that builds and runs more code is how a small change becomes a big
+// security problem. There is no reason for it here.
+for (const file of ["assets/js/site.js", "assets/js/events.js"]) {
+  if (!existsSync(file)) continue;
+  const source = readFileSync(file, "utf8");
+  for (const pattern of ["eval(", "new Function(", "document.write("]) {
+    if (source.includes(pattern)) {
+      problems.push(`${file} uses ${pattern} — remove it. It is never needed here.`);
+    }
+  }
+}
+
+/* --- 5. Count what is still waiting for real content --------------------- */
 
 const placeholders = pages.reduce(
   (total, page) => total + (readFileSync(page, "utf8").match(/class="tbd"/g) || []).length,
