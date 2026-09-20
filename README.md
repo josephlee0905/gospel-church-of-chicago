@@ -5,7 +5,8 @@ section — built from the project brief in
 `GCC_Website_Project_Brief_Aug30_v4.pptx`.
 
 **For volunteers updating the site, everything you need is in
-[EDITING.md](EDITING.md).**
+[EDITING.md](EDITING.md).** For moving the site to Squarespace — which plan
+to buy and how to port the content — see [MIGRATION.md](MIGRATION.md).
 
 ---
 
@@ -129,3 +130,7 @@ directly:
 The brief recommends a church template such as *Cove* or *Safe Haven*. The
 design in this repository — warm evergreen and sand, serif headings, arched
 photographs — was drawn to sit comfortably inside either of them.
+
+[MIGRATION.md](MIGRATION.md) has the full runbook: which plan to buy, the
+order to do the work in, and a block-by-block mapping from these files onto
+Squarespace.
