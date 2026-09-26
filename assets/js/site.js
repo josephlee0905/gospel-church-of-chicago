@@ -259,8 +259,8 @@ var SITE = {
         node.innerHTML = '<a class="btn btn--lg" href="' + esc(SITE.givingUrl) + '">Give online</a>';
       } else {
         node.innerHTML =
-          '<p class="notice notice--inline">Add the church’s giving link to ' +
-          "<code>assets/js/site.js</code> to turn on this button.</p>";
+          '<p class="notice notice--inline">Online giving is not set up yet. ' +
+          "Until it is, you can give in the Sunday service or by mail \u2014 both are below.</p>";
       }
     });
   }
