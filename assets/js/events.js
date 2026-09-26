@@ -16,38 +16,19 @@
 
 var EVENTS = [
 
-  {
-    title:       "Sunday Worship",
-    date:        "2026-12-06",
-    time:        "10:00 AM",
-    location:    "Main Sanctuary",
-    description: "Join us for worship, teaching from Scripture, and coffee together afterward. Everyone is welcome.",
-    image:       "assets/img/placeholder-worship.svg",
-    link:        "",
-    linkLabel:   ""
-  },
+  // Nothing on the calendar yet. Copy the example below, take away the
+  // two slashes at the start of each line, and fill in the details.
 
-  {
-    title:       "Christmas Eve Service",
-    date:        "2026-12-24",
-    time:        "6:00 PM",
-    location:    "Main Sanctuary",
-    description: "A candlelight service of carols and readings. Childcare is available for children under five.",
-    image:       "assets/img/placeholder-candles.svg",
-    link:        "",
-    linkLabel:   ""
-  },
-
-  {
-    title:       "Congregational Lunch",
-    date:        "2027-01-10",
-    time:        "12:30 PM",
-    location:    "Fellowship Hall",
-    description: "Lunch together after the service. Bring a dish to share if you are able — there is always plenty.",
-    image:       "assets/img/placeholder-fellowship.svg",
-    link:        "",
-    linkLabel:   "Sign up"
-  }
+  // {
+  //   title:       "Christmas Eve Service",
+  //   date:        "2026-12-24",
+  //   time:        "6:00 PM",
+  //   location:    "Main Sanctuary",
+  //   description: "A candlelight service of carols and readings.",
+  //   image:       "",
+  //   link:        "",
+  //   linkLabel:   ""
+  // }
 
 ];
 
