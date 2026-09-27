@@ -364,6 +364,8 @@ a:hover { color: var(--clay); }
 .section--paper .card { background: var(--cream); }
 
 .card__image { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+/* Portraits of people need height rather than width. */
+.card__image--portrait { aspect-ratio: 4 / 5; }
 .card__body { padding: 1.5rem; display: flex; flex-direction: column; gap: 0.65rem; }
 .card__body > * { margin: 0; }
 .card__title { margin: 0; }
