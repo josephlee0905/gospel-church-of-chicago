@@ -53,16 +53,17 @@ checks by mail, both of which work today.
 
 - [ ] **YouTube sermon playlist ID.** In a playlist address it is the part
       after `list=`. Until this is in, the Sermons page has nothing to show.
-- [ ] **YouTube channel address**
-- [ ] **Facebook address**, if the church uses one
-- [ ] **Instagram address**, if the church uses one
-- [ ] **A contact-form address**, e.g. a free one from
-      [Formspree](https://formspree.io). Until this is in, the Contact page
-      shows the church email address instead of a form, so nothing is broken
+- [x] ~~YouTube channel address~~ — @gospelchurchofchicago3850
+- [x] ~~Facebook and Instagram~~ — the church uses neither
+- [x] ~~A contact form~~ — the church prefers the email address, so the
+      Contact page shows that instead
 
 ---
 
-## 3. Blanks still on the pages
+## 3. Blanks on the pages — all filled
+
+There is no highlighted text left anywhere on the site. What remains here is
+optional, and the pages read properly without any of it.
 
 **Visit**
 
@@ -73,24 +74,17 @@ checks by mail, both of which work today.
       how the ages are grouped, and what happens if a child needs a parent
       can be added whenever the church wants
 
-**Missions**
-
-- [ ] Missionary and partner names, or a decision to drop that section.
-      There are three blank cards under "The people we support" and two
-      blank updates under "Letters from the field"
-- [ ] How often short-term teams actually travel. The page says every year
-
-**Give**
-
-- [ ] Can someone designate a gift to missions or benevolence, or does
-      everything go to the general fund?
-
 **한국어**
 
-- [ ] The pastor's greeting, two or three paragraphs
-- [ ] Rev. Duk Lee's name in Korean
-- [ ] Three church prayer requests
-- [ ] Directions, parking, and transit in Korean
+- [ ] Rev. Duk Lee should read the greeting, the three prayer requests and
+      the directions and correct anything that is not how he would say it.
+      They were written here from what the church has described, not
+      translated from the English pages
+
+**About**
+
+- [ ] The bulletin gives his name as Rev. Duk **Shin** Lee. The English pages
+      say Rev. Duk Lee. Which does he use in English?
 
 ---
 
@@ -105,10 +99,11 @@ list. About 1600 pixels wide is right for the large ones.
 - [ ] A welcome at the door
 - [ ] Children's ministry
 - [ ] An adult small group
-- [ ] Mission partners
 - [ ] A shared meal
-- [ ] Rev. Duk Lee, for the About page
-- [ ] Joseph Lee, for the About page
+- [ ] Photographs from the mission trips — one each for the Brazil, Mexico
+      and Panama cards on the Missions page
+- [x] ~~Rev. Duk Lee, for the About page~~
+- [x] ~~Joseph Lee, for the About page~~
 - [ ] The church logo, if there is one
 
 ---
