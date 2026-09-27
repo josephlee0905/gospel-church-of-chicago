@@ -121,6 +121,24 @@ church — not an individual — holds:
 
 ---
 
+## 5b. Before the Zoom links go public
+
+The Events page now carries both Zoom links. Before the site is made live,
+one of these should happen:
+
+- [ ] **Change the English service passcode from `123`.** A three-digit
+      passcode printed next to the link on a public page protects nothing.
+      Use a longer one, or
+- [ ] **Turn on a waiting room** for both meetings in Zoom, so a host lets
+      people in. This is the better answer: it works no matter who finds the
+      link, and regulars still click straight through
+
+Churches running open daily prayer meetings do get targeted by people who
+find the link and join to disrupt it. A waiting room costs the host one
+click per person and ends the problem.
+
+---
+
 ## 6. Decisions still open
 
 - [ ] Bulletins (주보) — publish them on the site, or not?
