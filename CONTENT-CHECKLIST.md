@@ -51,8 +51,8 @@ checks by mail, both of which work today.
 
 ## 2. The other links — `assets/js/site.js`
 
-- [ ] **YouTube sermon playlist ID.** In a playlist address it is the part
-      after `list=`. Until this is in, the Sermons page has nothing to show.
+- [x] ~~YouTube sermon playlist ID~~ — in place. New sermons added to that
+      playlist appear on the site by themselves.
 - [x] ~~YouTube channel address~~ — @gospelchurchofchicago3850
 - [x] ~~Facebook and Instagram~~ — the church uses neither
 - [x] ~~A contact form~~ — the church prefers the email address, so the

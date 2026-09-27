@@ -36,7 +36,7 @@ var SITE = {
   // In a playlist URL it is the part after "list=".
   // Example: youtube.com/playlist?list=PLabc123  ->  "PLabc123"
   // New sermons added to that playlist appear on the website automatically.
-  youtubePlaylistId: "",
+  youtubePlaylistId: "PLSSjKg12DmWeB8Ja0LZFMYJpbMj0iiwAc",
   youtubeChannelUrl: "https://www.youtube.com/@gospelchurchofchicago3850",
 
   // Give page: the church's existing giving platform. The website never
