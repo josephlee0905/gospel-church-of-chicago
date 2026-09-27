@@ -37,7 +37,7 @@ var SITE = {
   // Example: youtube.com/playlist?list=PLabc123  ->  "PLabc123"
   // New sermons added to that playlist appear on the website automatically.
   youtubePlaylistId: "",
-  youtubeChannelUrl: "https://www.youtube.com/@[channel-name]",
+  youtubeChannelUrl: "https://www.youtube.com/@gospelchurchofchicago3850",
 
   // Give page: the church's existing giving platform. The website never
   // handles money itself -- this button simply sends people there.
@@ -234,9 +234,12 @@ var SITE = {
     if (!SITE.youtubePlaylistId) {
       mount.innerHTML =
         '<div class="notice">' +
-          "<p><strong>Sermons will appear here.</strong> Add the church's YouTube " +
-          "playlist ID to <code>assets/js/site.js</code> and every new sermon posted " +
-          "to that playlist shows up on this page automatically.</p>" +
+          "<p><strong>Sermons will appear here soon.</strong>" +
+          (SITE.youtubeChannelUrl
+            ? ' In the meantime you can watch them on our <a href="' +
+              esc(SITE.youtubeChannelUrl) + '">YouTube channel</a>.'
+            : "") +
+          "</p>" +
         "</div>";
       return;
     }
