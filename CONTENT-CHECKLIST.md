@@ -52,14 +52,11 @@ checks by mail, both of which work today.
 ## 2. The other links — `assets/js/site.js`
 
 - [x] ~~YouTube sermon playlist ID~~ — in place.
-- [ ] **Turn on "Allow embedding" for the sermons**, so they play on the
-      website rather than sending people to YouTube. There is no single
-      switch: YouTube Studio → Content → open a video → **Show more** →
-      **License and distribution** → tick **Allow embedding** → Save. It
-      has to be done per video. Once the sermons are done, change
-      `playSermonsOnSite` to `true` in `assets/js/site.js` and the player
-      comes back. Until then the page shows a button through to the
-      playlist, which works.
+- [x] ~~Allow embedding on the sermons~~ — done in bulk, and sermons now
+      play on the page. New uploads have embedding on by default, so this
+      should not need doing again. If a future sermon ever shows "Video
+      unavailable", it has been switched off on that one: YouTube Studio →
+      Content → Select all → Edit → Embedding → On.
 - [x] ~~YouTube channel address~~ — @gospelchurchofchicago3850
 - [x] ~~Facebook and Instagram~~ — the church uses neither
 - [x] ~~A contact form~~ — the church prefers the email address, so the
