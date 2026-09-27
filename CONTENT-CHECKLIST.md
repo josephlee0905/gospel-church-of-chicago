@@ -133,14 +133,11 @@ church — not an individual — holds:
 
 ## 7. Before it goes public
 
-**The publishing setting is currently broken.** Drafts are not being
-published, which is why there is no preview link. On GitHub, under
-**Settings → Pages**, the Source must be set to *GitHub Actions*; and under
-**Settings → Environments → github-pages**, deployments must not be
-restricted to the `main` branch only. Until that is fixed, changes are saved
-safely but nothing is published.
-
-- [ ] Publishing setting fixed, and a preview link confirmed working
+- [x] ~~Publishing setting fixed.~~ Two settings had to agree: **Settings →
+      Pages → Source** set to *GitHub Actions*, and **Settings → Environments
+      → github-pages → Deployment branches and tags** set to *No restriction*.
+      Worth remembering that switching Pages on re-creates the environment and
+      puts the branch restriction back, so that one may need setting twice.
 
 **Then, last of all, turn search engines on.** The site is reachable by
 anyone with the link, but `robots.txt` currently tells Google and every
