@@ -45,7 +45,7 @@ var SITE = {
   // To turn embedding on: YouTube Studio -> Content -> the video ->
   // Show more -> License and distribution -> tick "Allow embedding".
   // Once that is done on the sermons, change this to true.
-  playSermonsOnSite: false,
+  playSermonsOnSite: true,
   youtubeChannelUrl: "https://www.youtube.com/@gospelchurchofchicago3850",
 
   // Give page: the church's existing giving platform. The website never
