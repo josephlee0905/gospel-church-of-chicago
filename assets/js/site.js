@@ -38,14 +38,17 @@ var SITE = {
   // New sermons added to that playlist appear on the website automatically.
   youtubePlaylistId: "PLSSjKg12DmWeB8Ja0LZFMYJpbMj0iiwAc",
 
-  // Sermons play on the page itself. If a video ever shows "Video
-  // unavailable" instead, embedding has been switched off on it:
-  // YouTube Studio -> Content -> the video -> Show more ->
-  // License and distribution -> tick "Allow embedding".
-  // To change every video at once: Content -> Select all -> Edit ->
-  // Embedding -> On. Set this to false to show a button through to the
-  // playlist instead, which always works.
-  playSermonsOnSite: true,
+  // YouTube refuses to play these sermons anywhere but YouTube itself, so
+  // the page shows a button through to the playlist rather than a player
+  // that would only say "Video unavailable". This is a restriction on the
+  // videos, not on the website, and nothing here can change it.
+  //
+  // To try again: YouTube Studio -> Content -> Select all -> Edit ->
+  // Embedding -> On. Then set this to true and look at the Sermons page.
+  // If it still refuses, the videos are almost certainly under a copyright
+  // claim on their music, which overrides the setting. The button is then
+  // the right answer, and a perfectly good one.
+  playSermonsOnSite: false,
   youtubeChannelUrl: "https://www.youtube.com/@gospelchurchofchicago3850",
 
   // Give page: the church's existing giving platform. The website never

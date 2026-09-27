@@ -52,11 +52,19 @@ checks by mail, both of which work today.
 ## 2. The other links — `assets/js/site.js`
 
 - [x] ~~YouTube sermon playlist ID~~ — in place.
-- [x] ~~Allow embedding on the sermons~~ — done in bulk, and sermons now
-      play on the page. New uploads have embedding on by default, so this
-      should not need doing again. If a future sermon ever shows "Video
-      unavailable", it has been switched off on that one: YouTube Studio →
-      Content → Select all → Edit → Embedding → On.
+- [ ] **Sermons will not play on the site, and this may not be fixable.**
+      The bulk edit was run (Content → Select all → Edit → Embedding → On)
+      and YouTube still refuses. That points at a copyright claim on the
+      worship music: a claimant can block embedding, and their block beats
+      the church's setting.
+
+      The page shows a button through to the playlist instead, which works
+      and looks deliberate. Nothing is broken and nothing is blocked.
+
+      Worth one check on a future sermon that has no claimed music in it —
+      if that one plays, the theory is confirmed and there is nothing more
+      to do. To retry at any point, set `playSermonsOnSite` to `true` in
+      `assets/js/site.js` and look at the Sermons page.
 - [x] ~~YouTube channel address~~ — @gospelchurchofchicago3850
 - [x] ~~Facebook and Instagram~~ — the church uses neither
 - [x] ~~A contact form~~ — the church prefers the email address, so the
