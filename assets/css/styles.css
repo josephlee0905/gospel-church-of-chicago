@@ -413,6 +413,9 @@ a:hover { color: var(--clay); }
 }
 .detail-list dd { margin: 0; color: var(--muted); }
 
+/* Long email addresses must wrap rather than run into the next column. */
+.fact-row p, .fact-row a { overflow-wrap: anywhere; }
+
 .fact-row {
   display: grid;
   gap: 1.5rem 2.5rem;
