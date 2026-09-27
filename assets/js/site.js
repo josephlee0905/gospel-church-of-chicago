@@ -16,7 +16,7 @@ var SITE = {
 
   /* --- The basics ------------------------------------------------------ */
   churchName:     "Gospel Church of Chicago",
-  churchNameKo:   "시카고 복음 교회",
+  churchNameKo:   "가스펠 교회",
   shortName:      "GCC",
   tagline:        "A warm, Christ-centered church in Des Plaines, Illinois, worshipping in Korean and in English.",
 
