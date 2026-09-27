@@ -66,16 +66,12 @@ checks by mail, both of which work today.
 
 **Visit**
 
-- [ ] Is parking free, and where are the accessible spaces?
-- [ ] The nearest Pace stop on Golf Road, and the nearest Metra station
-- [ ] Accessibility — step-free entrance, restrooms, hearing assistance
-- [ ] Children — where parents check in, how the ages are grouped, and what
-      happens if a child needs a parent during the service
-
-**About**
-
-- [ ] The exact name of Joseph Lee's seminary. It currently reads Trinity
-      Evangelical Divinity School, which is a guess
+- [ ] Where exactly are the accessible parking spaces?
+- [ ] Is there any hearing assistance in the sanctuary? Left off the page
+      rather than claimed, since it was never confirmed
+- [ ] Children — the page keeps this general for now. Where parents check in,
+      how the ages are grouped, and what happens if a child needs a parent
+      can be added whenever the church wants
 
 **Missions**
 
