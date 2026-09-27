@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Embed test | Gospel Church of Chicago</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="assets/css/styles.css">
+<script defer src="assets/js/events.js"></script>
+<script defer src="assets/js/site.js"></script>
+</head>
+<body data-page="test-embed.html">
+
+<header class="header" id="site-header"></header>
+
+<main id="main">
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <p class="eyebrow">Temporary</p>
+      <h2>Embed test</h2>
+      <p>This page is here to work out why the sermons will not play. It is not
+        part of the website and will be deleted. Look at each box below and tell
+        Claude which ones play and which say &ldquo;Video unavailable&rdquo;.</p>
+    </div>
+
+    <h3>A &mdash; the playlist, privacy mode</h3>
+    <p class="card__meta">This is what the Sermons page does now.</p>
+    <div class="video">
+      <iframe src="https://www.youtube-nocookie.com/embed/videoseries?list=PLSSjKg12DmWeB8Ja0LZFMYJpbMj0iiwAc"
+        title="Test A" loading="lazy" allowfullscreen></iframe>
+    </div>
+
+    <h3 style="margin-top:3rem;">B &mdash; the playlist, ordinary YouTube</h3>
+    <p class="card__meta">The same playlist, without privacy mode.</p>
+    <div class="video">
+      <iframe src="https://www.youtube.com/embed/videoseries?list=PLSSjKg12DmWeB8Ja0LZFMYJpbMj0iiwAc"
+        title="Test B" loading="lazy" allowfullscreen></iframe>
+    </div>
+
+    <h3 style="margin-top:3rem;">D &mdash; the recent sermon, on its own</h3>
+    <p class="card__meta">The video you sent, by itself, privacy mode.</p>
+    <div class="video">
+      <iframe src="https://www.youtube-nocookie.com/embed/9c2kkQRDF3k"
+        title="Test D" loading="lazy" allowfullscreen></iframe>
+    </div>
+
+    <h3 style="margin-top:3rem;">E &mdash; the recent sermon, ordinary YouTube</h3>
+    <p class="card__meta">The same video, without privacy mode.</p>
+    <div class="video">
+      <iframe src="https://www.youtube.com/embed/9c2kkQRDF3k"
+        title="Test E" loading="lazy" allowfullscreen></iframe>
+    </div>
+
+    <h3 style="margin-top:3rem;">F &mdash; the recent sermon, with the playlist attached</h3>
+    <p class="card__meta">Starts on this video but keeps the whole playlist
+      beside it. If D plays and A does not, this is the answer.</p>
+    <div class="video">
+      <iframe src="https://www.youtube-nocookie.com/embed/9c2kkQRDF3k?list=PLSSjKg12DmWeB8Ja0LZFMYJpbMj0iiwAc"
+        title="Test F" loading="lazy" allowfullscreen></iframe>
+    </div>
+
+    <h3 style="margin-top:3rem;">C &mdash; a known-good video</h3>
+    <p class="card__meta">A video that is definitely allowed to be embedded. If
+      this one plays and A and B do not, the website is fine and the problem is
+      on the church&rsquo;s videos.</p>
+    <div class="video">
+      <iframe src="https://www.youtube-nocookie.com/embed/aqz-KE-bpKQ"
+        title="Test C" loading="lazy" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer" id="site-footer"></footer>
+
+</body>
+</html>
