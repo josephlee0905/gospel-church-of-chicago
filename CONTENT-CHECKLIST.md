@@ -51,8 +51,15 @@ checks by mail, both of which work today.
 
 ## 2. The other links — `assets/js/site.js`
 
-- [x] ~~YouTube sermon playlist ID~~ — in place. New sermons added to that
-      playlist appear on the site by themselves.
+- [x] ~~YouTube sermon playlist ID~~ — in place.
+- [ ] **Turn on "Allow embedding" for the sermons**, so they play on the
+      website rather than sending people to YouTube. There is no single
+      switch: YouTube Studio → Content → open a video → **Show more** →
+      **License and distribution** → tick **Allow embedding** → Save. It
+      has to be done per video. Once the sermons are done, change
+      `playSermonsOnSite` to `true` in `assets/js/site.js` and the player
+      comes back. Until then the page shows a button through to the
+      playlist, which works.
 - [x] ~~YouTube channel address~~ — @gospelchurchofchicago3850
 - [x] ~~Facebook and Instagram~~ — the church uses neither
 - [x] ~~A contact form~~ — the church prefers the email address, so the

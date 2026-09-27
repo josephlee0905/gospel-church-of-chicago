@@ -37,6 +37,15 @@ var SITE = {
   // Example: youtube.com/playlist?list=PLabc123  ->  "PLabc123"
   // New sermons added to that playlist appear on the website automatically.
   youtubePlaylistId: "PLSSjKg12DmWeB8Ja0LZFMYJpbMj0iiwAc",
+
+  // YouTube lets the owner of a video refuse to let it play anywhere but
+  // YouTube itself. While that is switched off on the church's sermons,
+  // leave this as false and the page shows a button through to the
+  // playlist instead of a player that would only say "Video unavailable".
+  // To turn embedding on: YouTube Studio -> Content -> the video ->
+  // Show more -> License and distribution -> tick "Allow embedding".
+  // Once that is done on the sermons, change this to true.
+  playSermonsOnSite: false,
   youtubeChannelUrl: "https://www.youtube.com/@gospelchurchofchicago3850",
 
   // Give page: the church's existing giving platform. The website never
@@ -245,6 +254,19 @@ var SITE = {
             : "<strong>Sermons will appear here soon.</strong>" +
               (link ? " In the meantime you can watch them on our " + link + "." : "")) +
         "</p></div>";
+      return;
+    }
+
+    var playlistUrl = "https://www.youtube.com/playlist?list=" +
+      encodeURIComponent(SITE.youtubePlaylistId);
+
+    // Embedding is turned off on the videos, so send people to the playlist
+    // rather than show a player that refuses to play.
+    if (!SITE.playSermonsOnSite) {
+      var ko = document.documentElement.getAttribute("lang") === "ko";
+      mount.innerHTML =
+        '<p class="actions"><a class="btn btn--lg" href="' + esc(playlistUrl) + '">' +
+        (ko ? "주일 설교 보기" : "Watch our sermons") + "</a></p>";
       return;
     }
 
