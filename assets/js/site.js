@@ -232,15 +232,19 @@ var SITE = {
     if (!mount) return;
 
     if (!SITE.youtubePlaylistId) {
+      var korean = document.documentElement.getAttribute("lang") === "ko";
+      var link = SITE.youtubeChannelUrl
+        ? '<a href="' + esc(SITE.youtubeChannelUrl) + '">' +
+          (korean ? "교회 유튜브 채널" : "YouTube channel") + "</a>"
+        : "";
       mount.innerHTML =
-        '<div class="notice">' +
-          "<p><strong>Sermons will appear here soon.</strong>" +
-          (SITE.youtubeChannelUrl
-            ? ' In the meantime you can watch them on our <a href="' +
-              esc(SITE.youtubeChannelUrl) + '">YouTube channel</a>.'
-            : "") +
-          "</p>" +
-        "</div>";
+        '<div class="notice"><p>' +
+          (korean
+            ? "<strong>설교 영상은 곧 이곳에 올라옵니다.</strong>" +
+              (link ? " 그동안에는 " + link + "에서 보실 수 있습니다." : "")
+            : "<strong>Sermons will appear here soon.</strong>" +
+              (link ? " In the meantime you can watch them on our " + link + "." : "")) +
+        "</p></div>";
       return;
     }
 
