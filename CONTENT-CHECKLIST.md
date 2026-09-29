@@ -131,18 +131,34 @@ so a Korean-speaking visitor never has to read English to find anything.
 - [ ] The bulletin gives his name as Rev. Duk **Shin** Lee. The English pages
       say Rev. Duk Lee. Which does he use in English?
 
+**Missions** — from reading the church's own mission posts
+
+- [ ] **Is Panama still right?** The church said Brazil, Mexico and Panama.
+      The mission posts show Brazil, Paraguay and Costa Rica recently, and
+      Mexico in 2019–2020. Panama appears nowhere. The page now names all
+      five, but Panama is the one nobody has evidence for
+- [ ] **Pakistan.** A November 2021 post covers a 파키스탄 7전도학교 alongside
+      Mexican pastors. Left off the page because it predates the split — add
+      it if the church still supports that work
+- [ ] Is the man beside Rev. Lee in the Brazil photograph his interpreter?
+      The alt text says so, which is a guess from the photo
+- [ ] Names for the mission partners. The page describes the work but names
+      nobody, because no post gives a name that is safe to publish
+
 ---
 
 ## 4. Photographs — `assets/img/`
 
 **Only photographs taken after November 2024.** The church split that month,
 so anything older shows people who are no longer part of this congregation.
-The old website's gallery was searched and everything in it predates the
-split, including a good Easter group photo from 2022. None of it can be used.
 
-Every photograph on the site is a placeholder drawing at the moment. Real
-ones make more difference to how the site feels than anything else on this
-list. About 1600 pixels wide is right for the large ones.
+The 교회포토 gallery on gospelchurch1.com is almost entirely pre-split — the
+newest church photo in it is from 2022. The **mission** posts are the
+exception: those run to September 2026 and are being used. Worth checking
+that gallery again whenever new photographs are posted there.
+
+Real photographs make more difference to how the site feels than anything
+else on this list. About 1600 pixels wide is right for the large ones.
 
 - [ ] The congregation gathered — the large photo on the home page
 - [ ] Sunday worship
@@ -150,8 +166,10 @@ list. About 1600 pixels wide is right for the large ones.
 - [ ] Children's ministry
 - [ ] An adult small group
 - [ ] A shared meal
-- [ ] Photographs from the mission trips — one each for the Brazil, Mexico
-      and Panama cards on the Missions page
+- [x] ~~Photographs from the mission trips~~ — five, taken from the church's
+      own mission posts: Brazil (Sept 2026), Paraguay (2025), Costa Rica
+      (2025), plus Rev. Lee preaching in Brazil and a training seminar for the
+      page header. No usable photograph exists yet for Mexico or Panama
 - [x] ~~Rev. Duk Lee, for the About page~~
 - [x] ~~Joseph Lee, for the About page~~
 - [ ] The church logo, if there is one
