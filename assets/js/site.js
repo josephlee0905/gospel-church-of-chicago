@@ -38,16 +38,18 @@ var SITE = {
   // New sermons added to that playlist appear on the website automatically.
   youtubePlaylistId: "PLSSjKg12DmWeB8Ja0LZFMYJpbMj0iiwAc",
 
-  // Sermons play on the page itself. If one ever shows "Video unavailable",
-  // embedding has been switched off on it:
-  //   YouTube Studio -> Content -> Select all -> Edit -> Embedding -> On
-  // Do that on the Live tab as well as Uploads. Streamed services live
-  // under Live, and a bulk edit made from Uploads does not touch them --
-  // which is what went wrong the first time.
+  // The sermon that plays on the Sermons page and the home page. Paste the
+  // part of a YouTube address after "v=" -- in
+  // youtube.com/watch?v=9c2kkQRDF3k that is 9c2kkQRDF3k.
   //
-  // Setting this to false shows a button through to the playlist instead,
-  // which always works whatever YouTube decides.
-  playSermonsOnSite: true,
+  // Why one sermon rather than the whole playlist: the playlists still hold
+  // older videos with embedding switched off, and YouTube refuses to play a
+  // playlist when that is true of any of them. The button underneath takes
+  // people to the full playlist, which works regardless.
+  //
+  // To change which sermon plays, replace the code below. Leave it as ""
+  // and the page shows only the button.
+  latestSermonId: "9c2kkQRDF3k",
   youtubeChannelUrl: "https://www.youtube.com/@gospelchurchofchicago3850",
 
   // Give page: the church's existing giving platform. The website never
@@ -261,25 +263,24 @@ var SITE = {
 
     var playlistUrl = "https://www.youtube.com/playlist?list=" +
       encodeURIComponent(SITE.youtubePlaylistId);
+    var korean = document.documentElement.getAttribute("lang") === "ko";
+    var more = '<p class="actions"><a class="btn btn--outline" href="' +
+      esc(playlistUrl) + '">' +
+      (korean ? "지난 설교 모두 보기" : "All our sermons") + "</a></p>";
 
-    // Embedding is turned off on the videos, so send people to the playlist
-    // rather than show a player that refuses to play.
-    if (!SITE.playSermonsOnSite) {
-      var ko = document.documentElement.getAttribute("lang") === "ko";
-      mount.innerHTML =
-        '<p class="actions"><a class="btn btn--lg" href="' + esc(playlistUrl) + '">' +
-        (ko ? "주일 설교 보기" : "Watch our sermons") + "</a></p>";
+    if (!SITE.latestSermonId) {
+      mount.innerHTML = more;
       return;
     }
 
     mount.innerHTML =
       '<div class="video">' +
-        '<iframe src="https://www.youtube-nocookie.com/embed/videoseries?list=' +
-          encodeURIComponent(SITE.youtubePlaylistId) + '" title="Sermons from ' +
+        '<iframe src="https://www.youtube-nocookie.com/embed/' +
+          encodeURIComponent(SITE.latestSermonId) + '" title="A sermon from ' +
           esc(SITE.churchName) + '" loading="lazy" allowfullscreen ' +
           'allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture">' +
         "</iframe>" +
-      "</div>";
+      "</div>" + more;
   }
 
   /* --- Giving button ---------------------------------------------------- */
