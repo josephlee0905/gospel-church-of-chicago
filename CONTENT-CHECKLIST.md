@@ -109,12 +109,22 @@ optional, and the pages read properly without any of it.
       how the ages are grouped, and what happens if a child needs a parent
       can be added whenever the church wants
 
-**한국어**
+**한국어 — the whole Korean site now needs reading**
 
-- [ ] Rev. Duk Lee should read the greeting, the three prayer requests and
-      the directions and correct anything that is not how he would say it.
-      They were written here from what the church has described, not
-      translated from the English pages
+There is now a complete Korean site: the same nine pages as the English one,
+so a Korean-speaking visitor never has to read English to find anything.
+
+- [ ] **Rev. Duk Lee should read all nine Korean pages before launch.** This
+      is the most important thing left on this list. The Korean was written
+      here from what the church has described — it is not a translation of
+      the English pages, and it is not machine-translated — but it goes out
+      under his name and he should correct anything that is not how he would
+      say it. The pages are 홈, 교회 소개, 예배 안내, 사역, 선교, 설교, 행사,
+      헌금 and 연락처
+- [ ] Two things in particular are worth his eye: the six statements of
+      faith on 교회 소개, and the old church names on the same page
+      (장성교회 → 임마누엘교회 → 오네스교회 → 가스펠 교회). Those were spelled
+      out from the English and may not be how the church has ever written them
 
 **About**
 

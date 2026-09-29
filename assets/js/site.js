@@ -19,6 +19,7 @@ var SITE = {
   churchNameKo:   "가스펠 교회",
   shortName:      "GCC",
   tagline:        "A warm, Christ-centered church in Des Plaines, Illinois, worshipping in Korean and in English.",
+  taglineKo:      "\uc77c\ub9ac\ub178\uc774\uc8fc \ub370\uc2a4\ud50c\ub808\uc778\uc2a4\uc5d0\uc11c \ud55c\uad6d\uc5b4\uc640 \uc601\uc5b4\ub85c \uc608\ubc30\ud558\ub294 \uad50\ud68c\uc785\ub2c8\ub2e4.",
 
   /* --- Sunday worship -------------------------------------------------- */
   serviceTime:    "10:00 AM",
@@ -74,6 +75,20 @@ var SITE = {
     { label: "Missions",   href: "missions.html"   },
     { label: "Sermons",    href: "sermons.html"    },
     { label: "Events",     href: "events.html"     }
+  ],
+
+  /* --- The Korean menu -------------------------------------------------
+     The Korean pages live in the ko/ folder and have their own menu, so a
+     Korean reader stays in Korean as they move around. Each line here
+     matches a page in ko/ -- if you add one, add it to both lists.    */
+  navKo: [
+    { label: "\ud648",         href: "index.html"      },
+    { label: "\uad50\ud68c \uc18c\uac1c",  href: "about.html"      },
+    { label: "\uc608\ubc30 \uc548\ub0b4",  href: "visit.html"      },
+    { label: "\uc0ac\uc5ed",       href: "ministries.html" },
+    { label: "\uc120\uad50",       href: "missions.html"   },
+    { label: "\uc124\uad50",       href: "sermons.html"    },
+    { label: "\ud589\uc0ac",       href: "events.html"     }
   ]
 
 };
@@ -89,6 +104,57 @@ var SITE = {
   // Pages inside /ko/ have to reach back up one folder for shared files.
   var ROOT = document.documentElement.getAttribute("data-root") || "";
   var HERE = document.body ? document.body.getAttribute("data-page") : "";
+
+  // Korean pages are marked <html lang="ko"> and live in ko/. Everything
+  // the shared header and footer say is looked up here rather than
+  // written into the markup twice.
+  var KOREAN = document.documentElement.getAttribute("lang") === "ko";
+
+  // Every page of the site exists in both languages, so the language button
+  // goes to the same page in the other language rather than sending the
+  // reader back to the front. If a page is ever added in one language only,
+  // leave it out of this list and the button will go to the other site's
+  // home page instead of a link that does not work.
+  var BOTH_LANGUAGES = [
+    "index.html", "about.html", "visit.html", "ministries.html",
+    "missions.html", "sermons.html", "events.html", "give.html", "contact.html"
+  ];
+  var twin = BOTH_LANGUAGES.indexOf(HERE) === -1 ? "index.html" : HERE;
+
+  var WORDS = KOREAN ? {
+    skip:      "\ubcf8\ubb38\uc73c\ub85c \uac74\ub108\ub6f0\uae30",
+    menu:      "\uba54\ub274",
+    give:      "\ud5cc\uae08",
+    giveHref:  "give.html",
+    otherLang: "English",
+    otherHref: "../" + twin,
+    sundays:   "\uc8fc\uc77c \uc608\ubc30",
+    plan:      "\uc608\ubc30 \uc548\ub0b4 \ubcf4\uae30",
+    planHref:  "visit.html",
+    findUs:    "\uc624\uc2dc\ub294 \uae38",
+    more:      "\ub354 \ubcf4\uae30",
+    contact:   "\uc5f0\ub77d\ucc98",
+    home:      "index.html"
+  } : {
+    skip:      "Skip to content",
+    menu:      "Menu",
+    give:      "Give",
+    giveHref:  ROOT + "give.html",
+    otherLang: "\ud55c\uad6d\uc5b4",
+    otherHref: ROOT + "ko/" + twin,
+    sundays:   "Sundays",
+    plan:      "Plan your visit",
+    planHref:  ROOT + "visit.html",
+    findUs:    "Find us",
+    more:      "More",
+    contact:   "Contact",
+    home:      ROOT + "index.html"
+  };
+
+  // Korean pages link to each other inside ko/, English pages to each
+  // other at the top level, so neither needs the ../ prefix.
+  var MENU = KOREAN ? SITE.navKo : SITE.nav;
+  var churchName = KOREAN ? SITE.churchNameKo : SITE.churchName;
 
   function esc(value) {
     return String(value == null ? "" : value)
@@ -120,34 +186,29 @@ var SITE = {
     var mount = document.getElementById("site-header");
     if (!mount) return;
 
-    // On the Korean page the language link should offer English, not the
-    // page the reader is already standing on.
-    var korean = document.documentElement.getAttribute("lang") === "ko";
-    var langLink = korean
-      ? '<a class="nav__lang" href="' + ROOT + 'index.html">English</a>'
-      : '<a class="nav__lang" href="' + ROOT + 'ko/index.html" lang="ko">\ud55c\uad6d\uc5b4</a>';
-
-    var links = SITE.nav.map(function (item) {
+    var links = MENU.map(function (item) {
       var current = item.href === HERE;
-      return '<li><a href="' + ROOT + esc(item.href) + '"' +
+      return '<li><a href="' + esc(item.href) + '"' +
         (current ? ' aria-current="page"' : "") + ">" + esc(item.label) + "</a></li>";
     }).join("");
 
     mount.innerHTML =
-      '<a class="skip-link" href="#main">Skip to content</a>' +
+      '<a class="skip-link" href="#main">' + esc(WORDS.skip) + "</a>" +
       '<div class="header__inner container">' +
-        '<a class="wordmark" href="' + ROOT + 'index.html">' +
+        '<a class="wordmark" href="' + esc(WORDS.home) + '">' +
           '<span class="wordmark__mark">' + esc(SITE.shortName) + "</span>" +
-          '<span class="wordmark__name">' + esc(SITE.churchName) + "</span>" +
+          '<span class="wordmark__name">' + esc(churchName) + "</span>" +
         "</a>" +
         '<button class="nav-toggle" type="button" aria-expanded="false" ' +
           'aria-controls="site-nav"><span class="nav-toggle__bars" aria-hidden="true">' +
-          "</span>Menu</button>" +
+          "</span>" + esc(WORDS.menu) + "</button>" +
         '<nav class="nav" id="site-nav" aria-label="Main">' +
           "<ul class=\"nav__list\">" + links + "</ul>" +
           '<div class="nav__actions">' +
-            '<a class="btn btn--sm" href="' + ROOT + 'give.html">Give</a>' +
-            langLink +
+            '<a class="btn btn--sm" href="' + esc(WORDS.giveHref) + '">' +
+              esc(WORDS.give) + "</a>" +
+            '<a class="nav__lang" href="' + esc(WORDS.otherHref) + '"' +
+              (KOREAN ? "" : ' lang="ko"') + ">" + esc(WORDS.otherLang) + "</a>" +
           "</div>" +
         "</nav>" +
       "</div>";
@@ -178,40 +239,42 @@ var SITE = {
       social += '<a href="' + esc(SITE.youtubeChannelUrl) + '">YouTube</a>';
     }
 
-    var pages = SITE.nav.concat([
-      { label: "Give",    href: "give.html"    },
-      { label: "Contact", href: "contact.html" }
+    var pages = MENU.concat([
+      { label: WORDS.give,    href: "give.html"    },
+      { label: WORDS.contact, href: "contact.html" }
     ]).map(function (item) {
-      return '<li><a href="' + ROOT + esc(item.href) + '">' + esc(item.label) + "</a></li>";
+      return '<li><a href="' + esc(item.href) + '">' + esc(item.label) + "</a></li>";
     }).join("");
 
     mount.innerHTML =
       '<div class="container footer__grid">' +
         '<div class="footer__col footer__col--brand">' +
-          '<p class="footer__name">' + esc(SITE.churchName) + "</p>" +
-          '<p class="footer__tagline">' + esc(SITE.tagline) + "</p>" +
+          '<p class="footer__name">' + esc(churchName) + "</p>" +
+          '<p class="footer__tagline">' + esc(KOREAN ? SITE.taglineKo : SITE.tagline) + "</p>" +
         "</div>" +
         '<div class="footer__col">' +
-          "<h2>Sundays</h2>" +
-          "<p>" + fill(SITE.serviceTime) + "</p>" +
-          '<p><a href="' + ROOT + 'visit.html">Plan your visit</a></p>' +
+          "<h2>" + esc(WORDS.sundays) + "</h2>" +
+          "<p>" + fill(KOREAN ? SITE.serviceTimeKo : SITE.serviceTime) + "</p>" +
+          '<p><a href="' + esc(WORDS.planHref) + '">' + esc(WORDS.plan) + "</a></p>" +
         "</div>" +
         '<div class="footer__col">' +
-          "<h2>Find us</h2>" +
+          "<h2>" + esc(WORDS.findUs) + "</h2>" +
           '<p><a href="' + esc(SITE.mapLinkUrl) + '">' +
             fill(SITE.addressLine1) + "<br>" + fill(SITE.addressLine2) + "</a></p>" +
           '<p><a href="tel:' + esc(digitsOnly(SITE.phone)) + '">' + fill(SITE.phone) + "</a><br>" +
             '<a href="mailto:' + esc(SITE.email) + '">' + fill(SITE.email) + "</a></p>" +
         "</div>" +
         '<div class="footer__col">' +
-          "<h2>More</h2>" +
+          "<h2>" + esc(WORDS.more) + "</h2>" +
           '<ul class="footer__links">' + pages + "</ul>" +
         "</div>" +
       "</div>" +
       '<div class="container footer__bar">' +
-        "<p>&copy; " + new Date().getFullYear() + " " + esc(SITE.churchName) + "</p>" +
+        "<p>&copy; " + new Date().getFullYear() + " " + esc(churchName) + "</p>" +
         '<p class="footer__social">' + social + "</p>" +
-        '<p><a href="' + ROOT + 'ko/index.html" lang="ko">한국어 안내</a></p>' +
+        '<p><a href="' + esc(WORDS.otherHref) + '"' +
+          (KOREAN ? "" : ' lang="ko"') + ">" +
+          esc(KOREAN ? "English site" : "\ud55c\uad6d\uc5b4 \uc548\ub0b4") + "</a></p>" +
       "</div>";
   }
 
@@ -249,7 +312,7 @@ var SITE = {
     var mount = document.getElementById("sermon-player");
     if (!mount) return;
 
-    var korean = document.documentElement.getAttribute("lang") === "ko";
+    var korean = KOREAN;
 
     var channelLink = SITE.youtubeChannelUrl
       ? '<a href="' + esc(SITE.youtubeChannelUrl) + '">' +
@@ -278,8 +341,10 @@ var SITE = {
     mount.innerHTML =
       '<div class="video">' +
         '<iframe src="https://www.youtube-nocookie.com/embed/' +
-          encodeURIComponent(SITE.latestSermonId) + '" title="A sermon from ' +
-          esc(SITE.churchName) + '" loading="lazy" allowfullscreen ' +
+          encodeURIComponent(SITE.latestSermonId) + '" title="' +
+          esc(korean ? churchName + " \uc8fc\uc77c \uc124\uad50"
+                     : "A sermon from " + SITE.churchName) +
+          '" loading="lazy" allowfullscreen ' +
           'allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture">' +
         "</iframe>" +
       "</div>" + more;

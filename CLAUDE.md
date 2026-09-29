@@ -65,8 +65,8 @@ works when published.
 | --- | --- |
 | `assets/js/site.js` | **Settings.** Service time, address, phone, email, giving link, YouTube playlist, and the menu. Used by every page. |
 | `assets/js/events.js` | The event list. Past events drop off by themselves. |
-| `index.html` … `contact.html` | One file per page. Page wording lives here. |
-| `ko/index.html` | The Korean page. |
+| `index.html` … `contact.html` | **The English site.** One file per page. Page wording lives here. |
+| `ko/index.html` … `ko/contact.html` | **The Korean site.** The same nine pages, written in Korean. Not a translation — its own wording. |
 | `assets/css/styles.css` | Colors, fonts, spacing. All the colors are at the top. |
 | `assets/img/` | Photographs. |
 | `.github/` | The automatic check and the publishing setup. |
@@ -83,8 +83,10 @@ volunteer's own guide, `CONTENT-CHECKLIST.md` for what the church still owes.
 - Commit to `main` without a previewed, approved change.
 - Weaken, skip, or delete `.github/check-site.mjs` to make something pass.
 - Handle payments. The Give page links out to the church's giving platform.
-- Machine-translate the English pages into Korean. The Korean page is short
-  and independent on purpose.
+- Machine-translate between the two sites. The Korean pages are written in
+  Korean, not run through a translator, and Rev. Duk Lee reads them before
+  they go live. If you cannot write a line of Korean that a native speaker
+  would actually say, leave it and ask.
 - Put anyone's home address, personal phone number, or personal email in the
   repository. Church contact details only.
 - Use a root-absolute link (`/about.html`). Every link must be relative
@@ -100,6 +102,33 @@ volunteer's own guide, `CONTENT-CHECKLIST.md` for what the church still owes.
 - Make the smallest change that does the job. A request to fix one sentence
   is not an invitation to restructure the page. If you notice something else
   worth doing, mention it and let them decide — do not fold it in.
+
+---
+
+## Two sites, one set of settings
+
+The site exists twice: in English at the top level, and in Korean under
+`ko/`. Both have the same nine pages, with the same filenames. A reader who
+presses **한국어** on the Sermons page lands on the Korean Sermons page, not
+back at the front, and every link after that keeps them in Korean.
+
+That matching is what makes it work, so:
+
+- **Every page must exist in both languages, under the same filename.** The
+  list is in `BOTH_LANGUAGES` in `site.js`. If you add a page to one side,
+  add it to the other and to that list. A page on one side only sends the
+  language button to a link that does not work.
+- **Facts are never typed twice.** Service time, address, phone, email and
+  the map all come from `site.js` through `data-site="..."`, so changing one
+  line still updates both sites at once. The only paired settings are
+  `serviceTime`/`serviceTimeKo`, `churchName`/`churchNameKo`,
+  `tagline`/`taglineKo` and `nav`/`navKo`.
+- **Wording is written twice, on purpose.** A change to an English paragraph
+  does not change the Korean one. If a change matters on both sides, say so
+  and do both.
+- Events can carry `titleKo`, `timeKo`, `locationKo` and `descriptionKo`.
+  Anything left out falls back to the English, so an event always shows —
+  but it only reads properly in Korean if it is given Korean.
 
 ---
 

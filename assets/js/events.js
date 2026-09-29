@@ -12,6 +12,11 @@
    time     Anything you like, e.g. "6:00 PM" (leave "" to hide)
    image    A photo in assets/img/ (leave "" for a plain card)
    link     A sign-up or information page (leave "" to hide the button)
+
+   For the Korean side of the site, add titleKo, timeKo, locationKo and
+   descriptionKo alongside the English ones. Anything you leave out simply
+   shows the English wording on the Korean pages, so a Korean line is never
+   required -- but an event only reads properly in Korean if it is given one.
    ========================================================================== */
 
 var EVENTS = [
@@ -20,14 +25,18 @@ var EVENTS = [
   // two slashes at the start of each line, and fill in the details.
 
   // {
-  //   title:       "Christmas Eve Service",
-  //   date:        "2026-12-24",
-  //   time:        "6:00 PM",
-  //   location:    "Main Sanctuary",
-  //   description: "A candlelight service of carols and readings.",
-  //   image:       "",
-  //   link:        "",
-  //   linkLabel:   ""
+  //   title:         "Christmas Eve Service",
+  //   titleKo:       "성탄 전야 예배",
+  //   date:          "2026-12-24",
+  //   time:          "6:00 PM",
+  //   timeKo:        "저녁 6시",
+  //   location:      "Main Sanctuary",
+  //   locationKo:    "본당",
+  //   description:   "A candlelight service of carols and readings.",
+  //   descriptionKo: "촛불을 켜고 찬송과 성경 봉독으로 드리는 예배입니다.",
+  //   image:         "",
+  //   link:          "",
+  //   linkLabel:     ""
   // }
 
 ];
@@ -62,6 +71,25 @@ window.GCC_renderEvents = function (root) {
     return new Date(+parts[0], (+parts[1] || 1) - 1, +parts[2] || 1);
   }
 
+  // The Korean pages set lang="ko" on the page itself, so the dates and the
+  // wording below follow whichever site the reader is on.
+  var KOREAN = document.documentElement.getAttribute("lang") === "ko";
+  var LOCALE = KOREAN ? "ko-KR" : "en-US";
+  var WORDS = KOREAN
+    ? { none: '아직 예정된 일정이 없습니다. ',
+        invite: '<a href="contact.html">연락해 주십시오</a> — 언제든지 반갑게 맞이하겠습니다.',
+        more: "더 보기" }
+    : { none: "There are no events on the calendar right now. ",
+        invite: '<a href="' + root + 'contact.html">get in touch</a> — we would love to hear from you.',
+        more: "Learn more" };
+
+  // Picks the Korean wording for an event when it has been given one, and
+  // falls back to the English rather than leaving a gap on the page.
+  function say(item, key) {
+    var korean = item[key + "Ko"];
+    return KOREAN && korean ? korean : item[key];
+  }
+
   var LONG = { weekday: "long", month: "long", day: "numeric" };
   var SHORT_MONTH = { month: "short" };
 
@@ -78,8 +106,8 @@ window.GCC_renderEvents = function (root) {
 
     if (!list.length) {
       mount.innerHTML =
-        '<div class="notice"><p>There are no events on the calendar right now. ' +
-        'Please <a href="' + root + 'contact.html">get in touch</a> — we would love to hear from you.</p></div>';
+        '<div class="notice"><p>' + WORDS.none +
+        (KOREAN ? "" : "Please ") + WORDS.invite + "</p></div>";
       return;
     }
 
@@ -88,20 +116,20 @@ window.GCC_renderEvents = function (root) {
       var media = item.image
         ? '<img class="card__image" src="' + root + esc(item.image) + '" alt="" loading="lazy">'
         : '<p class="card__date-block"><span>' +
-            esc(when.toLocaleDateString("en-US", SHORT_MONTH)) + "</span><strong>" +
+            esc(when.toLocaleDateString(LOCALE, SHORT_MONTH)) + "</span><strong>" +
             when.getDate() + "</strong></p>";
 
       return '<li class="card">' + media +
         '<div class="card__body">' +
           '<p class="card__eyebrow"><time datetime="' + esc(item.date) + '">' +
-            esc(when.toLocaleDateString("en-US", LONG)) + "</time>" +
-            (item.time ? " · " + fill(item.time) : "") + "</p>" +
-          "<h3 class=\"card__title\">" + esc(item.title) + "</h3>" +
-          (item.location ? '<p class="card__meta">' + esc(item.location) + "</p>" : "") +
-          (item.description ? "<p>" + esc(item.description) + "</p>" : "") +
+            esc(when.toLocaleDateString(LOCALE, LONG)) + "</time>" +
+            (say(item, "time") ? " · " + fill(say(item, "time")) : "") + "</p>" +
+          "<h3 class=\"card__title\">" + esc(say(item, "title")) + "</h3>" +
+          (say(item, "location") ? '<p class="card__meta">' + esc(say(item, "location")) + "</p>" : "") +
+          (say(item, "description") ? "<p>" + esc(say(item, "description")) + "</p>" : "") +
           (item.link
             ? '<p><a class="link-arrow" href="' + esc(item.link) + '">' +
-              esc(item.linkLabel || "Learn more") + "</a></p>"
+              esc(say(item, "linkLabel") || WORDS.more) + "</a></p>"
             : "") +
         "</div></li>";
     }).join("") + "</ul>";
