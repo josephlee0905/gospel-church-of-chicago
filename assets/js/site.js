@@ -32,11 +32,9 @@ var SITE = {
 
   /* --- Links ----------------------------------------------------------- */
 
-  // Sermons page: paste the ID of the church's YouTube sermon PLAYLIST.
-  // In a playlist URL it is the part after "list=".
-  // Example: youtube.com/playlist?list=PLabc123  ->  "PLabc123"
-  // New sermons added to that playlist appear on the website automatically.
-  youtubePlaylistId: "PLSSjKg12DmWeB8Ja0LZFMYJpbMj0iiwAc",
+  // The church's YouTube channel. Services are streamed live and stay on
+  // the channel afterwards, so that is where the website looks for them.
+  youtubeChannelId: "UCOGFUNaWYOBLK6baPQHJU_Q",
 
   // The sermon that plays on the Sermons page and the home page. Paste the
   // part of a YouTube address after "v=" -- in
@@ -49,7 +47,7 @@ var SITE = {
   //
   // To change which sermon plays, replace the code below. Leave it as ""
   // and the page shows only the button.
-  latestSermonId: "9c2kkQRDF3k",
+  latestSermonId: "4K_jT7oKRbU",
   youtubeChannelUrl: "https://www.youtube.com/@gospelchurchofchicago3850",
 
   // Give page: the church's existing giving platform. The website never
@@ -261,11 +259,10 @@ var SITE = {
       return;
     }
 
-    var playlistUrl = "https://www.youtube.com/playlist?list=" +
-      encodeURIComponent(SITE.youtubePlaylistId);
+    var allSermonsUrl = SITE.youtubeChannelUrl + "/videos";
     var korean = document.documentElement.getAttribute("lang") === "ko";
     var more = '<p class="actions"><a class="btn btn--outline" href="' +
-      esc(playlistUrl) + '">' +
+      esc(allSermonsUrl) + '">' +
       (korean ? "지난 설교 모두 보기" : "All our sermons") + "</a></p>";
 
     if (!SITE.latestSermonId) {

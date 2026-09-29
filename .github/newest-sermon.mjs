@@ -5,7 +5,7 @@
  *
  * What it does, in order:
  *
- *   1. Reads YouTube's public listing of the Sunday playlist. This is a plain
+ *   1. Reads YouTube's public listing of the church's channel. This is a plain
  *      web address anyone can open -- no account, no key, nothing to expire.
  *   2. Takes the videos newest first.
  *   3. Asks YouTube whether each one is actually allowed to play on another
@@ -27,6 +27,7 @@ import { readFileSync, writeFileSync, appendFileSync } from "node:fs";
 
 const SETTINGS = "assets/js/site.js";
 const HOW_MANY_TO_TRY = 10;
+const SUNDAY = "\uc8fc\uc77c\uc608\ubc30";   // 주일예배 -- how the church titles a Sunday service
 
 function report(changed, note) {
   console.log(note);
@@ -39,16 +40,16 @@ function report(changed, note) {
 
 const settings = readFileSync(SETTINGS, "utf8");
 
-const playlist = settings.match(/youtubePlaylistId:\s*"([^"]*)"/);
-if (!playlist || !playlist[1]) {
+const channel = settings.match(/youtubeChannelId:\s*"([^"]*)"/);
+if (!channel || !channel[1]) {
   console.error(
-    `No sermon playlist is set in ${SETTINGS}, so there is nothing to look ` +
-    `up. Add one to youtubePlaylistId, or delete ` +
+    `No YouTube channel is set in ${SETTINGS}, so there is nothing to look ` +
+    `up. Add one to youtubeChannelId, or delete ` +
     `.github/workflows/newest-sermon.yml to stop this running.`
   );
   process.exit(1);
 }
-const playlistId = playlist[1];
+const channelId = channel[1];
 
 const current = settings.match(/latestSermonId:\s*"([^"]*)"/);
 if (!current) {
@@ -63,8 +64,8 @@ const currentId = current[1];
 /* --- What is in it ------------------------------------------------------- */
 
 const feedUrl =
-  "https://www.youtube.com/feeds/videos.xml?playlist_id=" +
-  encodeURIComponent(playlistId);
+  "https://www.youtube.com/feeds/videos.xml?channel_id=" +
+  encodeURIComponent(channelId);
 
 let feed;
 try {
@@ -75,9 +76,9 @@ try {
   feed = await response.text();
 } catch (error) {
   console.error(
-    `Could not read the sermon playlist from YouTube: ${error.message}\n` +
+    `Could not read the church's YouTube channel: ${error.message}\n` +
     `Nothing has been changed. If this keeps happening, check that the ` +
-    `playlist is still public: ${feedUrl}`
+    `channel is still public: ${feedUrl}`
   );
   process.exit(1);
 }
@@ -87,13 +88,21 @@ const entries = [];
 for (const block of feed.split("<entry>").slice(1)) {
   const id = block.match(/<yt:videoId>([^<]+)<\/yt:videoId>/);
   const when = block.match(/<published>([^<]+)<\/published>/);
-  if (id) entries.push({ id: id[1], when: when ? Date.parse(when[1]) : 0 });
+  const name = block.match(/<title>([^<]*)<\/title>/);
+  const title = name ? name[1] : "";
+  // The channel carries the Wednesday and Friday services too. Only the
+  // Sunday one belongs on the front of the website, and the church titles
+  // every one of them with the Korean for "Sunday service".
+  if (id && title.includes(SUNDAY)) {
+    entries.push({ id: id[1], when: when ? Date.parse(when[1]) : 0 });
+  }
 }
 
 if (!entries.length) {
   console.error(
-    `YouTube returned the playlist but it has no videos in it. Nothing has ` +
-    `been changed.`
+    `No Sunday service was found among the newest videos on the channel. ` +
+    `The church titles them with ${SUNDAY}; if that ever changes, this job ` +
+    `needs changing with it. Nothing has been changed.`
   );
   process.exit(1);
 }

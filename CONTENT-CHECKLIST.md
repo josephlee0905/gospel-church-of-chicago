@@ -66,18 +66,23 @@ to the offering and to checks by mail, both of which work today.
       about 30 at a time, so bulk edits fix a page and leave the rest.
 
 - [x] ~~Keeping the sermon current.~~ Every Monday morning, GitHub reads the
-      Sunday playlist, finds the newest sermon that will actually play on
-      another website, and puts it on the site. Nobody has to do anything.
+      church's YouTube channel, finds the newest **Sunday** service, checks it
+      will actually play on another website, and puts it on the site.
 
-      It never puts up a video that cannot play — it checks first, and leaves
-      last week's sermon alone rather than showing "Video unavailable". If it
-      cannot reach YouTube at all it fails loudly, so a quietly broken job
-      does not go unnoticed.
+      It reads the channel rather than a playlist, because the old 주일예배
+      playlist stopped being updated in 2020 while the services carried on
+      being streamed to the channel. It picks out Sunday by looking for
+      주일예배 in the title, so the Wednesday and Friday services are left
+      alone. If the church ever changes how it titles them, this job needs
+      changing with it.
 
-      To run it now instead of waiting: **Actions** → *Use the newest Sunday
-      sermon* → **Run workflow**. To switch it off for good: delete
-      `.github/workflows/newest-sermon.yml`, and the site simply keeps
-      whichever sermon it was last given.
+      It never puts up a video that cannot play, and if it cannot reach
+      YouTube it fails loudly rather than quietly.
+
+      To run it now: **Actions** → *Use the newest Sunday sermon* → **Run
+      workflow**. To switch it off: delete
+      `.github/workflows/newest-sermon.yml`, and the site keeps whichever
+      sermon it was last given.
 
 - [ ] **Optional: get the whole playlist playing.** Work through every page
       of Content → Uploads *and* Content → Live, Select all → Edit →
