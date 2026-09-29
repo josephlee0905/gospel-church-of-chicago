@@ -120,6 +120,11 @@ optional, and the pages read properly without any of it.
 
 ## 4. Photographs — `assets/img/`
 
+**Only photographs taken after November 2024.** The church split that month,
+so anything older shows people who are no longer part of this congregation.
+The old website's gallery was searched and everything in it predates the
+split, including a good Easter group photo from 2022. None of it can be used.
+
 Every photograph on the site is a placeholder drawing at the moment. Real
 ones make more difference to how the site feels than anything else on this
 list. About 1600 pixels wide is right for the large ones.
