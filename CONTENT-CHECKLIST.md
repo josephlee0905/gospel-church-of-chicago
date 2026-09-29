@@ -52,19 +52,24 @@ checks by mail, both of which work today.
 ## 2. The other links — `assets/js/site.js`
 
 - [x] ~~YouTube sermon playlist ID~~ — in place.
-- [ ] **Sermons will not play on the site, and this may not be fixable.**
-      The bulk edit was run (Content → Select all → Edit → Embedding → On)
-      and YouTube still refuses. That points at a copyright claim on the
-      worship music: a claimant can block embedding, and their block beats
-      the church's setting.
+- [x] ~~Sermons on the site.~~ One recent sermon plays on the Sermons page
+      and the home page, with a button through to the full playlist.
 
-      The page shows a button through to the playlist instead, which works
-      and looks deliberate. Nothing is broken and nothing is blocked.
+      Why not the whole playlist: YouTube will not play a playlist on another
+      website if any video in it has embedding switched off, and the church's
+      playlists hold 60, 40 and 35 videos, most of them older ones where it
+      is off. Studio's **Select all** only ticks the page you are looking at,
+      about 30 at a time, so bulk edits fix a page and leave the rest.
 
-      Worth one check on a future sermon that has no claimed music in it —
-      if that one plays, the theory is confirmed and there is nothing more
-      to do. To retry at any point, set `playSermonsOnSite` to `true` in
-      `assets/js/site.js` and look at the Sermons page.
+- [ ] **Optional: change which sermon plays**, whenever you like. Copy the
+      part of a YouTube address after `v=` and put it in `latestSermonId` in
+      `assets/js/site.js`. Nothing breaks if it is never changed — an older
+      sermon playing is still a sermon playing.
+
+- [ ] **Optional: get the whole playlist playing.** Work through every page
+      of Content → Uploads *and* Content → Live, Select all → Edit →
+      Embedding → On, one page at a time until all of them are done. Worth it
+      only if someone has the patience.
 - [x] ~~YouTube channel address~~ — @gospelchurchofchicago3850
 - [x] ~~Facebook and Instagram~~ — the church uses neither
 - [x] ~~A contact form~~ — the church prefers the email address, so the
