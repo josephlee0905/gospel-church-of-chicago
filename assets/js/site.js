@@ -236,39 +236,37 @@ var SITE = {
     });
   }
 
-  /* --- Sermon playlist -------------------------------------------------- */
+  /* --- The sermon on the page -------------------------------------------- */
 
   function buildSermons() {
     var mount = document.getElementById("sermon-player");
     if (!mount) return;
 
-    if (!SITE.youtubePlaylistId) {
-      var korean = document.documentElement.getAttribute("lang") === "ko";
-      var link = SITE.youtubeChannelUrl
-        ? '<a href="' + esc(SITE.youtubeChannelUrl) + '">' +
-          (korean ? "교회 유튜브 채널" : "YouTube channel") + "</a>"
-        : "";
+    var korean = document.documentElement.getAttribute("lang") === "ko";
+
+    var channelLink = SITE.youtubeChannelUrl
+      ? '<a href="' + esc(SITE.youtubeChannelUrl) + '">' +
+        (korean ? "\uad50\ud68c \uc720\ud29c\ube0c \ucc44\ub110" : "YouTube channel") + "</a>"
+      : "";
+
+    // No sermon chosen yet: say so, and send people to the channel.
+    if (!SITE.latestSermonId) {
       mount.innerHTML =
         '<div class="notice"><p>' +
           (korean
-            ? "<strong>설교 영상은 곧 이곳에 올라옵니다.</strong>" +
-              (link ? " 그동안에는 " + link + "에서 보실 수 있습니다." : "")
+            ? "<strong>\uc124\uad50 \uc601\uc0c1\uc740 \uacf3 \uc774\uacf3\uc5d0 \uc62c\ub77c\uc635\ub2c8\ub2e4.</strong>" +
+              (channelLink ? " \uadf8\ub3d9\uc548\uc5d0\ub294 " + channelLink + "\uc5d0\uc11c \ubcf4\uc2e4 \uc218 \uc788\uc2b5\ub2c8\ub2e4." : "")
             : "<strong>Sermons will appear here soon.</strong>" +
-              (link ? " In the meantime you can watch them on our " + link + "." : "")) +
+              (channelLink ? " In the meantime you can watch them on our " + channelLink + "." : "")) +
         "</p></div>";
       return;
     }
 
-    var allSermonsUrl = SITE.youtubeChannelUrl + "/videos";
-    var korean = document.documentElement.getAttribute("lang") === "ko";
-    var more = '<p class="actions"><a class="btn btn--outline" href="' +
-      esc(allSermonsUrl) + '">' +
-      (korean ? "지난 설교 모두 보기" : "All our sermons") + "</a></p>";
-
-    if (!SITE.latestSermonId) {
-      mount.innerHTML = more;
-      return;
-    }
+    var more = SITE.youtubeChannelUrl
+      ? '<p class="actions"><a class="btn btn--outline" href="' +
+        esc(SITE.youtubeChannelUrl + "/videos") + '">' +
+        (korean ? "\uc9c0\ub09c \uc124\uad50 \ubaa8\ub450 \ubcf4\uae30" : "All our sermons") + "</a></p>"
+      : "";
 
     mount.innerHTML =
       '<div class="video">' +
