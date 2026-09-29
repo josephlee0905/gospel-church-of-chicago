@@ -61,10 +61,19 @@ checks by mail, both of which work today.
       is off. Studio's **Select all** only ticks the page you are looking at,
       about 30 at a time, so bulk edits fix a page and leave the rest.
 
-- [ ] **Optional: change which sermon plays**, whenever you like. Copy the
-      part of a YouTube address after `v=` and put it in `latestSermonId` in
-      `assets/js/site.js`. Nothing breaks if it is never changed — an older
-      sermon playing is still a sermon playing.
+- [x] ~~Keeping the sermon current.~~ Every Monday morning, GitHub reads the
+      Sunday playlist, finds the newest sermon that will actually play on
+      another website, and puts it on the site. Nobody has to do anything.
+
+      It never puts up a video that cannot play — it checks first, and leaves
+      last week's sermon alone rather than showing "Video unavailable". If it
+      cannot reach YouTube at all it fails loudly, so a quietly broken job
+      does not go unnoticed.
+
+      To run it now instead of waiting: **Actions** → *Use the newest Sunday
+      sermon* → **Run workflow**. To switch it off for good: delete
+      `.github/workflows/newest-sermon.yml`, and the site simply keeps
+      whichever sermon it was last given.
 
 - [ ] **Optional: get the whole playlist playing.** Work through every page
       of Content → Uploads *and* Content → Live, Select all → Edit →

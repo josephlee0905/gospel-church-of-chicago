@@ -1,0 +1,63 @@
+# Puts the newest Sunday sermon on the website, once a week.
+#
+# Runs every Monday morning. It reads the Sunday playlist from YouTube,
+# picks the newest sermon that is actually allowed to play on another
+# website, and if that is not the one already showing, updates the settings
+# file and republishes the site.
+#
+# If nothing new is found, nothing happens and the site is left alone.
+# If YouTube cannot be reached, this job fails, which sends an email --
+# that is deliberate, so a quietly broken job does not go unnoticed for
+# months.
+#
+# To switch this off for good: delete this file. The website carries on
+# exactly as it is, showing whichever sermon it was last given.
+#
+# To run it now rather than waiting for Monday: Actions -> this workflow ->
+# "Run workflow".
+
+name: Use the newest Sunday sermon
+
+on:
+  schedule:
+    - cron: "0 15 * * 1"        # Mondays, mid-morning in Chicago
+  workflow_dispatch:
+
+jobs:
+  choose:
+    name: Find the newest sermon
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    outputs:
+      changed: ${{ steps.choose.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Ask YouTube what is newest
+        id: choose
+        run: node .github/newest-sermon.mjs
+
+      # The same check every other change goes through. A sermon id should
+      # never break the site, but nothing reaches the live site untested.
+      - name: Check the site
+        if: steps.choose.outputs.changed == 'true'
+        run: node .github/check-site.mjs
+
+      - name: Save it
+        if: steps.choose.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "Show this week's sermon on the site"
+          git push
+
+  publish:
+    name: Publish
+    needs: choose
+    if: needs.choose.outputs.changed == 'true'
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/publish.yml
