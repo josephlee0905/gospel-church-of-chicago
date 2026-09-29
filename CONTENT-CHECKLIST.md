@@ -21,31 +21,35 @@ security and the liability. That is on purpose and should stay that way.
 
 So the work is opening an account, not building anything.
 
-**Step 1 — decide what to offer.** The suggestion was Zelle plus one card
-option. Zelle costs the church nothing and most people already have it in
-their banking app. The card option catches everyone else.
+**The church has chosen Zeffy** (zeffy.com), after comparing the options.
 
-- [ ] **Zelle** — set up through the church's existing bank account. No
-      fees at all. The catch: no automatic receipts or year-end statements,
-      so the treasurer tracks those by hand.
-- [ ] **One card option.** Any of these work:
-  - **PayPal**, at the discounted nonprofit rate — shortest path if the
-    church already has an account
-  - **Tithe.ly** — built for churches, handles recurring giving and
-    year-end statements on its own
-  - **Givelify** — the simplest to use, common in smaller churches
+Why it won: it is the only one where a $100 gift arrives as $100 — every
+other platform takes between 1% and 2.9% plus a fixed amount per gift. And
+it issues IRS tax receipts automatically, including year-end cumulative
+receipts, which the church would otherwise be producing by hand.
 
-**Step 2 — open it.** Whoever does this needs the church's EIN, the
-501(c)(3) letter, and the church bank account details. This is a pastor or
-treasurer job.
+The catch, so nobody is surprised by it later: Zeffy makes its money by
+asking *donors* to add an optional tip at checkout. The church is never
+charged. Some givers find being asked mildly irritating; most add something.
 
-**Step 3 — send Claude the link.** One line changes and the "Give online"
-button on the Give page starts working. Until then that page tells visitors
-online giving is not set up yet and points them to the offering and to
-checks by mail, both of which work today.
+**What is needed before signing up:**
 
-- [ ] Giving account opened
-- [ ] Link handed over and the button switched on
+- [ ] The church's **EIN**
+- [ ] The **church logo** — Zeffy will not generate tax receipts without
+      one, so this is a genuine blocker rather than a nice-to-have
+- [ ] The **church bank account** details, for payouts
+
+**Signing up** — a pastor or treasurer job, not a volunteer one:
+
+- [ ] zeffy.com → **Sign up** → United States → **501(c)(3)**
+- [ ] Enter the EIN and upload the logo
+- [ ] Connect the church bank account
+- [ ] Create a donation form, and turn on **automatic tax receipts**
+- [ ] Send Claude the form's link
+
+**Then:** one line changes and the "Give online" button starts working. Until
+then that page tells visitors online giving is not set up yet and points them
+to the offering and to checks by mail, both of which work today.
 
 ---
 
