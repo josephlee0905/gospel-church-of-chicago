@@ -120,6 +120,13 @@ var SITE = {
     var mount = document.getElementById("site-header");
     if (!mount) return;
 
+    // On the Korean page the language link should offer English, not the
+    // page the reader is already standing on.
+    var korean = document.documentElement.getAttribute("lang") === "ko";
+    var langLink = korean
+      ? '<a class="nav__lang" href="' + ROOT + 'index.html">English</a>'
+      : '<a class="nav__lang" href="' + ROOT + 'ko/index.html" lang="ko">\ud55c\uad6d\uc5b4</a>';
+
     var links = SITE.nav.map(function (item) {
       var current = item.href === HERE;
       return '<li><a href="' + ROOT + esc(item.href) + '"' +
@@ -140,7 +147,7 @@ var SITE = {
           "<ul class=\"nav__list\">" + links + "</ul>" +
           '<div class="nav__actions">' +
             '<a class="btn btn--sm" href="' + ROOT + 'give.html">Give</a>' +
-            '<a class="nav__lang" href="' + ROOT + 'ko/index.html" lang="ko">한국어</a>' +
+            langLink +
           "</div>" +
         "</nav>" +
       "</div>";
