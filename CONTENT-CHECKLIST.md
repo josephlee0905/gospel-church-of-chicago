@@ -133,10 +133,9 @@ so a Korean-speaking visitor never has to read English to find anything.
 
 **Missions** — from reading the church's own mission posts
 
-- [ ] **Is Panama still right?** The church said Brazil, Mexico and Panama.
-      The mission posts show Brazil, Paraguay and Costa Rica recently, and
-      Mexico in 2019–2020. Panama appears nowhere. The page now names all
-      five, but Panama is the one nobody has evidence for
+- [x] ~~Is Panama still right?~~ No — it was a misremembering, and it has
+      been taken off the page. The Missions page now names Brazil, Paraguay
+      and Costa Rica, with Mexico in a line below them
 - [ ] **Pakistan.** A November 2021 post covers a 파키스탄 7전도학교 alongside
       Mexican pastors. Left off the page because it predates the split — add
       it if the church still supports that work
