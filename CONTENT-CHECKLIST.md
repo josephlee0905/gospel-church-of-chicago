@@ -123,26 +123,32 @@ so a Korean-speaking visitor never has to read English to find anything.
       헌금 and 연락처
 - [ ] Two things in particular are worth his eye: the six statements of
       faith on 교회 소개, and the old church names on the same page
-      (장성교회 → 임마누엘교회 → 오네스교회 → 가스펠 교회). Those were spelled
-      out from the English and may not be how the church has ever written them
+      (장성장로교회 → 임마누엘교회 → 오네스교회 → 가스펠 교회). **장성장로교회 is
+      a guess** — the 2006 filing gives the English as Korean Jang-Sung
+      Presbyterian Church, but nobody has said how the church wrote it in
+      Korean
 
 **About**
 
-- [ ] The bulletin gives his name as Rev. Duk **Shin** Lee. The English pages
-      say Rev. Duk Lee. Which does he use in English?
+- [x] ~~The bulletin gives his name as Rev. Duk **Shin** Lee.~~ Confirmed —
+      the English pages now say Rev. Duk Shin Lee. The Korean pages already
+      said 이덕신, which was the clue
+- [x] ~~The founding name.~~ The 2006 filing settles it: the church was
+      incorporated as **Korean Jang-Sung Presbyterian Church**, and the About
+      page now says so
 
 **Missions** — from reading the church's own mission posts
 
 - [x] ~~Is Panama still right?~~ No — it was a misremembering, and it has
       been taken off the page. The Missions page now names Brazil, Paraguay
       and Costa Rica, with Mexico in a line below them
-- [ ] **Pakistan.** A November 2021 post covers a 파키스탄 7전도학교 alongside
-      Mexican pastors. Left off the page because it predates the split — add
-      it if the church still supports that work
-- [ ] Is the man beside Rev. Lee in the Brazil photograph his interpreter?
-      The alt text says so, which is a guess from the photo
-- [ ] Names for the mission partners. The page describes the work but names
-      nobody, because no post gives a name that is safe to publish
+- [x] ~~Pakistan.~~ The church no longer supports that work, so it stays off
+      the page
+- [x] ~~Who is the man beside Rev. Lee in the Brazil photograph?~~ A local
+      pastor. The hidden description now says so
+- [x] ~~Names for the mission partners.~~ The church would rather not name
+      them. The page describes the work without naming anyone, which is also
+      the safer choice for people serving overseas
 
 ---
 
