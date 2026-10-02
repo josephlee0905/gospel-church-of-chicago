@@ -140,8 +140,14 @@ so a Korean-speaking visitor never has to read English to find anything.
 **Missions** — from reading the church's own mission posts
 
 - [x] ~~Is Panama still right?~~ No — it was a misremembering, and it has
-      been taken off the page. The Missions page now names Brazil, Paraguay
-      and Costa Rica, with Mexico in a line below them
+      been taken off the page. The Missions page names Brazil, Paraguay,
+      Costa Rica and Mexico
+- [ ] **The medical mission to Mexico.** The church remembers one, but there
+      is no post about it anywhere on gospelchurch1.com. Searched: both
+      mission categories, every church-photo page, and the words 의료, 치과,
+      진료, medical, dental and clinic. The three Mexico posts (2019 and 2020)
+      are pastors' conferences. If photographs exist off the website, send
+      them and the Mexico card can be rewritten around them
 - [x] ~~Pakistan.~~ The church no longer supports that work, so it stays off
       the page
 - [x] ~~Who is the man beside Rev. Lee in the Brazil photograph?~~ A local
