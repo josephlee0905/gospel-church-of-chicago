@@ -171,12 +171,19 @@ that gallery again whenever new photographs are posted there.
 Real photographs make more difference to how the site feels than anything
 else on this list. About 1600 pixels wide is right for the large ones.
 
-- [ ] The congregation gathered — the large photo on the home page
-- [ ] Sunday worship
-- [ ] A welcome at the door
-- [ ] Children's ministry
-- [ ] An adult small group
-- [ ] A shared meal
+**There are no placeholder drawings left anywhere on the site.** Every
+picture is now a real photograph. What follows is about quality, not gaps.
+
+- [x] ~~The congregation gathered~~ — on the home page, About and Ministries
+- [x] ~~Children's ministry~~, ~~an adult small group~~, ~~a shared meal~~
+- [x] ~~The church building from Golf Road~~ — taken from the old site's
+      교회안내 page, and the only photograph there with nobody in it, so the
+      split does not affect it. It is the Contact page header
+- [ ] **Sunday worship** — still missing. There is no photograph of a service
+      in progress taken since the split, so other pictures stand in for it
+- [ ] **A welcome at the door** — same
+- [ ] A few slots reuse the same photograph. Nothing looks wrong, but three
+      or four new pictures from a single Sunday would fix it in one morning
 - [x] ~~Photographs from the mission trips~~ — five, taken from the church's
       own mission posts: Brazil (Sept 2026), Paraguay (2025), Costa Rica
       (2025), plus Rev. Lee preaching in Brazil and a training seminar for the
