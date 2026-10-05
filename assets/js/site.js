@@ -355,7 +355,15 @@ var SITE = {
   function buildGiving() {
     Array.prototype.forEach.call(document.querySelectorAll("[data-give-button]"), function (node) {
       if (SITE.givingUrl) {
-        node.innerHTML = '<a class="btn btn--lg" href="' + esc(SITE.givingUrl) + '">Give online</a>';
+        node.innerHTML = '<a class="btn btn--lg" href="' + esc(SITE.givingUrl) + '">' +
+          (KOREAN ? "\uc628\ub77c\uc778 \ud5cc\uae08\ud558\uae30" : "Give online") + "</a>";
+      } else if (KOREAN) {
+        node.innerHTML =
+          '<p class="notice notice--inline">\uc628\ub77c\uc778 \ud5cc\uae08\uc740 \uc544\uc9c1 ' +
+          "\uc900\ube44\ub418\uc9c0 \uc54a\uc558\uc2b5\ub2c8\ub2e4. \uadf8\ub3d9\uc548\uc5d0\ub294 " +
+          "\uc8fc\uc77c \uc608\ubc30 \uc911\uc5d0\ub098 \uc6b0\ud3b8\uc73c\ub85c \ub4dc\ub9b4 \uc218 " +
+          "\uc788\uc2b5\ub2c8\ub2e4. \ub450 \uac00\uc9c0 \ubaa8\ub450 \uc544\ub798\uc5d0 " +
+          "\uc548\ub0b4\ub418\uc5b4 \uc788\uc2b5\ub2c8\ub2e4.</p>";
       } else {
         node.innerHTML =
           '<p class="notice notice--inline">Online giving is not set up yet. ' +
