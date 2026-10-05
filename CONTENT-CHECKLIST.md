@@ -34,10 +34,36 @@ charged. Some givers find being asked mildly irritating; most add something.
 
 **What is needed before signing up:**
 
-- [ ] The church's **EIN**
+- [x] ~~The church's **EIN**~~ — on the 2001 IRS determination letter, which
+      the church has. Not written down here on purpose: this repository is
+      public, and a church does not file Form 990, so the number is not
+      already sitting in the usual public records
 - [ ] The **church logo** — Zeffy will not generate tax receipts without
-      one, so this is a genuine blocker rather than a nice-to-have
+      one, so this is a genuine blocker rather than a nice-to-have. There is
+      no logo to reuse: the old website brands itself with text and colour
+      only, and carries no logo file at all
 - [ ] The **church bank account** details, for payouts
+
+**Check the name against IRS records before applying.** Three names are in
+play, and only one of them is right for the form:
+
+| Name | Where it comes from |
+| --- | --- |
+| Gospel Church of Chicago | what the church calls itself today |
+| Oneness Church of Chicago | the Illinois legal name, filed in 2006 |
+| Korean Jang-Sung Presbyterian Church | the name on the 2001 IRS letter |
+
+The 2006 name change was filed with **Illinois**. The IRS letter says in its
+own words that the church should tell the IRS of any change of name, and
+nobody here knows whether that was ever done. If it was not, IRS records may
+still show the 1991 name against that EIN — and Zeffy, like a bank, checks
+the name against IRS records.
+
+- [ ] Look up the EIN at the IRS Tax Exempt Organization Search
+      (apps.irs.gov/app/eos) and see which name comes back. Use that name on
+      the Zeffy form. It cannot be looked up automatically; the IRS blocks it
+- [ ] If the IRS still has the old name, filing the change with the IRS is
+      worth doing anyway, whatever happens with Zeffy
 
 **Signing up** — a pastor or treasurer job, not a volunteer one:
 
