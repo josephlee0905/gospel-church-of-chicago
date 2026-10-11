@@ -91,9 +91,16 @@ to the offering and to checks by mail, both of which work today.
       is off. Studio's **Select all** only ticks the page you are looking at,
       about 30 at a time, so bulk edits fix a page and leave the rest.
 
-- [x] ~~Keeping the sermon current.~~ Every Monday morning, GitHub reads the
-      church's YouTube channel, finds the newest **Sunday** service, checks it
-      will actually play on another website, and puts it on the site.
+- [ ] **Keeping the sermon current — starts working at launch, not before.**
+      Every Monday morning, GitHub reads the church's YouTube channel, finds
+      the newest **Sunday** service, checks it will actually play on another
+      website, and puts it on the site.
+
+      **It has not run yet, and cannot until the site is launched.** GitHub
+      only runs a scheduled job from the `main` branch, and this job — like
+      everything else built so far — is still on the preview branch. Until
+      launch, the sermon is updated by hand. It was last set to the
+      11 October 2026 service.
 
       It reads the channel rather than a playlist, because the old 주일예배
       playlist stopped being updated in 2020 while the services carried on

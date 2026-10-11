@@ -52,6 +52,13 @@ their behalf without an explicit yes.
 Only one preview exists at a time — pushing a different branch replaces it.
 That is fine for one change at a time, which is how this site is maintained.
 
+The weekly sermon job publishes `main` every Monday morning when there is a
+new sermon, and that also clears whatever preview was up. If a preview
+vanishes on a Monday, push the branch again.
+
+Scheduled jobs in `.github/workflows/` only ever run from `main`. A schedule
+added on a branch does nothing until the branch is merged.
+
 If a visual change is hard to describe, serve the site locally
 (`python3 -m http.server`) and show them a screenshot alongside the preview
 link. Do not rely on a screenshot alone — the preview link is what proves it
