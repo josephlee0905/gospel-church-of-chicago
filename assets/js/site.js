@@ -25,6 +25,19 @@ var SITE = {
   serviceTime:    "10:00 AM",
   serviceTimeKo:  "오전 10시",
 
+  // The weekday services. With serviceTime above, these fill the strip at
+  // the top of every page, the times on the home page, and the Events and
+  // Ministries pages. Change a time here and it changes in all of them.
+  morningTime:    "6:00 AM",      // the early morning service, every day
+  morningTimeKo:  "오전 6시",
+  eveningTime:    "8:00 PM",      // Wednesday night and Friday services
+  eveningTimeKo:  "저녁 8시",
+
+  // Zoom. Shown on the home page and the Events page.
+  zoomSundayUrl:      "https://us06web.zoom.us/j/83069811285",   // English service
+  zoomSundayPasscode: "123",
+  zoomMorningUrl:     "https://us06web.zoom.us/j/84685092761?pwd=7qxwTDLDkTqaRitOuuumU2jlLmVA2O.1",
+
   /* --- Where to find us ------------------------------------------------ */
   addressLine1:   "1250 E. Golf Road",
   addressLine2:   "Des Plaines, IL 60016",
@@ -401,8 +414,59 @@ var SITE = {
       "</iframe>";
   }
 
+  /* --- Service times strip -------------------------------------------- */
+
+  // A band above the menu on every page with the week's services, so
+  // nobody has to hunt for them. It scrolls away; the menu stays pinned.
+  function buildTimesBar() {
+    var header = document.getElementById("site-header");
+    if (!header || !header.parentNode) return;
+
+    // Each service has a full label for wide screens and a short one for
+    // phones, so the strip stays to two lines on a small screen.
+    var items = KOREAN ? [
+      [["주일예배", SITE.serviceTimeKo],
+       ["주일", SITE.serviceTimeKo]],
+      [["새벽예배", "매일 " + SITE.morningTimeKo],
+       ["새벽예배", SITE.morningTimeKo]],
+      [["수요·금요예배", SITE.eveningTimeKo],
+       ["수·금", SITE.eveningTimeKo]]
+    ] : [
+      [["Sunday worship", SITE.serviceTime], ["Sunday", SITE.serviceTime]],
+      [["Early morning service", SITE.morningTime + " daily"], ["Daily", SITE.morningTime]],
+      [["Wednesday & Friday", SITE.eveningTime], ["Wed & Fri", SITE.eveningTime]]
+    ];
+    var link = KOREAN
+      ? ["Zoom 주소와 자세한 예배 안내", "Zoom 주소"]
+      : ["Zoom links and details", "Zoom links"];
+
+    function both(wide, narrow) {
+      return '<span class="times-bar__wide">' + wide + "</span>" +
+             '<span class="times-bar__narrow">' + narrow + "</span>";
+    }
+
+    var bar = document.createElement("div");
+    bar.className = "times-bar";
+    bar.innerHTML =
+      '<div class="container times-bar__inner">' +
+        items.map(function (item) {
+          return "<p>" + both(
+            "<strong>" + esc(item[0][0]) + "</strong> " + fill(item[0][1]),
+            "<strong>" + esc(item[1][0]) + "</strong> " + fill(item[1][1])) + "</p>";
+        }).join("") +
+        '<a href="' + esc(WORDS.home) + '#worship-times">' +
+          both(esc(link[0]), esc(link[1])) + "</a>" +
+      "</div>";
+    header.parentNode.insertBefore(bar, header);
+
+    // Keep "skip to content" the very first thing a keyboard reaches.
+    var skip = header.querySelector(".skip-link");
+    if (skip) header.parentNode.insertBefore(skip, bar);
+  }
+
   function start() {
     buildHeader();
+    buildTimesBar();
     buildFooter();
     fillPlaceholders();
     buildSermons();

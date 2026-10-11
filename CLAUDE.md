@@ -70,7 +70,7 @@ works when published.
 
 | File | What it holds |
 | --- | --- |
-| `assets/js/site.js` | **Settings.** Service time, address, phone, email, giving link, YouTube playlist, and the menu. Used by every page. |
+| `assets/js/site.js` | **Settings.** Every service time, the Zoom links, address, phone, email, giving link, YouTube channel, and the menu. Used by every page. |
 | `assets/js/events.js` | The event list. Past events drop off by themselves. |
 | `index.html` … `contact.html` | **The English site.** One file per page. Page wording lives here. |
 | `ko/index.html` … `ko/contact.html` | **The Korean site.** The same nine pages, written in Korean. Not a translation — its own wording. |
@@ -128,7 +128,8 @@ That matching is what makes it work, so:
 - **Facts are never typed twice.** Service time, address, phone, email and
   the map all come from `site.js` through `data-site="..."`, so changing one
   line still updates both sites at once. The only paired settings are
-  `serviceTime`/`serviceTimeKo`, `churchName`/`churchNameKo`,
+  `serviceTime`/`serviceTimeKo`, `morningTime`/`morningTimeKo`,
+  `eveningTime`/`eveningTimeKo`, `churchName`/`churchNameKo`,
   `tagline`/`taglineKo` and `nav`/`navKo`.
 - **Wording is written twice, on purpose.** A change to an English paragraph
   does not change the Korean one. If a change matters on both sides, say so
@@ -200,9 +201,19 @@ The check reports how many are left. It does not block publishing.
 ## Common requests
 
 **"Change the service time / phone number / address."**
-One line in `assets/js/site.js`. It updates every page at once. Note that
-`serviceTime` and `serviceTimeKo` are separate — ask whether the Korean page
-needs updating too.
+One line in `assets/js/site.js`. It updates every page at once — the strip
+at the top of every page, the times on the home page, Events and Ministries.
+Each time has an English and a Korean setting (`serviceTime` and
+`serviceTimeKo`, and so on); change both. `morningTime` is the daily early
+morning service; `eveningTime` is Wednesday night and Friday.
+
+A few sentences also say the Sunday time in words — the Visit and About
+pages, and Rev. Lee's greeting on the Korean home page. Search for them
+when the Sunday time changes.
+
+**"Change a Zoom link."** Also one line in `site.js` — `zoomSundayUrl`,
+`zoomSundayPasscode` or `zoomMorningUrl`. They appear on the home page and
+the Events page.
 
 **"Add an event."**
 Copy a block in `assets/js/events.js`. Date must be `YYYY-MM-DD`. Ask for

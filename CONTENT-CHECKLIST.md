@@ -242,8 +242,11 @@ church — not an individual — holds:
 
 ## 5b. Before the Zoom links go public
 
-The Events page now carries both Zoom links. Before the site is made live,
-one of these should happen:
+Both Zoom links now appear on the **home page** as well as the Events page,
+and every page has a strip at the top pointing to them — so they are much
+easier to find than before, by members and by anyone else. They are set in
+one place, `assets/js/site.js`. Before the site is made live, one of these
+should happen:
 
 - [ ] **Change the English service passcode from `123`.** A three-digit
       passcode printed next to the link on a public page protects nothing.
