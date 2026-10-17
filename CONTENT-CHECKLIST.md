@@ -100,7 +100,7 @@ and Visit pages, in both languages. Until the forms exist, each button opens
 an email to the church instead, so nothing is broken in the meantime.
 
 Make both forms while signed in to the **church's** Google account
-(onenesschurch1250@gmail.com), not a personal one, so the requests belong to
+(gospelchurch1250@gmail.com), not a personal one, so the requests belong to
 the church. Go to forms.google.com and choose **Blank form**.
 
 **Prayer request** — title it *Prayer request · 기도제목*

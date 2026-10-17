@@ -70,7 +70,7 @@ works when published.
 
 | File | What it holds |
 | --- | --- |
-| `assets/js/site.js` | **Settings.** Every service time, the Zoom links, address, phone, email, giving link, YouTube channel, and the menu. Used by every page. |
+| `assets/js/site.js` | **Settings.** Every service time, the Zoom links, address, email, giving link, YouTube channel, and the menu. Used by every page. |
 | `assets/js/events.js` | The event list. Past events drop off by themselves. |
 | `index.html` … `contact.html` | **The English site.** One file per page. Page wording lives here. |
 | `ko/index.html` … `ko/contact.html` | **The Korean site.** The same nine pages, written in Korean. Not a translation — its own wording. |
@@ -125,7 +125,7 @@ That matching is what makes it work, so:
   list is in `BOTH_LANGUAGES` in `site.js`. If you add a page to one side,
   add it to the other and to that list. A page on one side only sends the
   language button to a link that does not work.
-- **Facts are never typed twice.** Service time, address, phone, email and
+- **Facts are never typed twice.** Service times, address, email and
   the map all come from `site.js` through `data-site="..."`, so changing one
   line still updates both sites at once. The only paired settings are
   `serviceTime`/`serviceTimeKo`, `morningTime`/`morningTimeKo`,
@@ -203,12 +203,15 @@ The check reports how many are left. It does not block publishing.
 
 ## Common requests
 
-**"Change the service time / phone number / address."**
+**"Change the service time / email / address."**
 One line in `assets/js/site.js`. It updates every page at once — the strip
 at the top of every page, the times on the home page, Events and Ministries.
 Each time has an English and a Korean setting (`serviceTime` and
 `serviceTimeKo`, and so on); change both. `morningTime` is the daily early
 morning service; `eveningTime` is Wednesday night and Friday.
+
+The church does not publish a phone number. It was taken off every page at
+the church's request; do not put one back unless they ask.
 
 A few sentences also say the Sunday time in words — the Visit and About
 pages, and Rev. Lee's greeting on the Korean home page. Search for them

@@ -22,13 +22,13 @@ The website updates itself a minute or two later.
 
 | I want to change… | Open this file |
 | --- | --- |
-| Service time, address, phone, email, links, the menu | `assets/js/site.js` |
+| Service times, address, email, links, the menu | `assets/js/site.js` |
 | Events on the calendar | `assets/js/events.js` |
 | The words on one particular page | that page's `.html` file |
 
 ---
 
-## Changing the service time, address, phone, or email
+## Changing the service time, address, or email
 
 Open **`assets/js/site.js`**. At the top you will find a list that looks like
 this:
@@ -37,7 +37,6 @@ this:
 serviceTime:    "[Sunday service time]",
 addressLine1:   "[Street address]",
 addressLine2:   "Des Plaines, IL [ZIP]",
-phone:          "[(000) 000-0000]",
 email:          "[info@gospelchurch1.com]",
 ```
 
@@ -185,7 +184,7 @@ used on the site. Changing a value there changes it everywhere.
 greeting, prayer requests, and directions. It is edited exactly like any
 other page.
 
-It deliberately stays short. The service time, address, phone, and email on
+It deliberately stays short. The service time, address, and email on
 it come from the same settings file as the English pages, so those never need
 translating twice. It shows the **same** YouTube playlist as the English
 Sermons page, so sermons are never uploaded twice.

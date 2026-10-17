@@ -41,8 +41,7 @@ var SITE = {
   /* --- Where to find us ------------------------------------------------ */
   addressLine1:   "1250 E. Golf Road",
   addressLine2:   "Des Plaines, IL 60016",
-  phone:          "(847) 803-9191",
-  email:          "onenesschurch1250@gmail.com",
+  email:          "gospelchurch1250@gmail.com",
 
   /* --- Links ----------------------------------------------------------- */
 
@@ -288,8 +287,7 @@ var SITE = {
           "<h2>" + esc(WORDS.findUs) + "</h2>" +
           '<p><a href="' + esc(SITE.mapLinkUrl) + '">' +
             fill(SITE.addressLine1) + "<br>" + fill(SITE.addressLine2) + "</a></p>" +
-          '<p><a href="tel:' + esc(digitsOnly(SITE.phone)) + '">' + fill(SITE.phone) + "</a><br>" +
-            '<a href="mailto:' + esc(SITE.email) + '">' + fill(SITE.email) + "</a></p>" +
+          '<p><a href="mailto:' + esc(SITE.email) + '">' + fill(SITE.email) + "</a></p>" +
         "</div>" +
         '<div class="footer__col">' +
           "<h2>" + esc(WORDS.more) + "</h2>" +
@@ -306,7 +304,7 @@ var SITE = {
   }
 
   /* --- Settings placed into the page ------------------------------------
-     Any element written as <span data-site="phone"></span> is filled in
+     Any element written as <span data-site="email"></span> is filled in
      with the matching setting from the list at the top of this file.    */
 
   function fillPlaceholders() {

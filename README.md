@@ -79,10 +79,10 @@ assets/img/                 Photographs (placeholders for now).
 
 Three ideas keep maintenance low:
 
-1. **Facts live in one place.** The service time, address, phone, email,
+1. **Facts live in one place.** The service times, address, email,
    giving link, YouTube playlist, and the menu are all set once at the top of
    `assets/js/site.js`, and appear on every page from there. There is no page
-   where the phone number can go stale.
+   where the email address can go stale.
 2. **The header and footer are shared.** They are written once in
    `assets/js/site.js`, so adding a page to the menu is a one-line change,
    not nine.
