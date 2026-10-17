@@ -21,7 +21,20 @@ security and the liability. That is on purpose and should stay that way.
 
 So the work is opening an account, not building anything.
 
-**The church has chosen Zeffy** (zeffy.com), after comparing the options.
+**Zelle is live on the Give page now.** The church's Zelle QR code is on both
+Give pages, in the church's legal name, Oneness Church of Chicago. Scanned
+from a computer it opens the giver's bank app; tapped on a phone it opens
+Zelle's "find your bank" page. The code was checked to scan correctly off
+the page itself, and it holds no personal phone number or email.
+
+- [ ] **Zelle gifts need recording by hand for year-end statements.** Zelle
+      sends no receipt and keeps no donor list for the church. The sender's
+      name shows in the church's bank account; whoever prepares the year-end
+      giving statements needs to pick those gifts up from there
+
+**Card giving and automatic tax receipts are still to come.** For that the
+church has chosen Zeffy (zeffy.com), after comparing the options. When it
+exists, a "Give by card" button appears next to the Zelle code.
 
 Why it won: it is the only one where a $100 gift arrives as $100 — every
 other platform takes between 1% and 2.9% plus a fixed amount per gift. And
@@ -73,9 +86,9 @@ the name against IRS records.
 - [ ] Create a donation form, and turn on **automatic tax receipts**
 - [ ] Send Claude the form's link
 
-**Then:** one line changes and the "Give online" button starts working. Until
-then that page tells visitors online giving is not set up yet and points them
-to the offering and to checks by mail, both of which work today.
+**Then:** one line changes and a "Give by card" button appears on the Give
+page, beside the Zelle code. Until then there is simply no card button —
+Zelle, the Sunday offering and checks by mail all work today.
 
 ---
 

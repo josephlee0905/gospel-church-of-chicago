@@ -64,8 +64,16 @@ var SITE = {
   latestSermonId: "U9A2v_rlbSY",
   youtubeChannelUrl: "https://www.youtube.com/@gospelchurchofchicago3850",
 
-  // Give page: the church's existing giving platform. The website never
-  // handles money itself -- this button simply sends people there.
+  // Give page. The website never handles money itself -- these only send
+  // people to where the giving happens.
+  //
+  // zelleUrl is what the church's Zelle QR code points to; the code itself
+  // is assets/img/zelle-qr.png. Tapping it on a phone opens Zelle's own
+  // "find your bank" page.
+  zelleUrl:       "https://enroll.zellepay.com/qr-codes?data=eyJuYW1lIjoiT05FTkVTUyBDSFVSQ0ggT0YgQ0hJQ0FHTyIsInRva2VuIjoiZ29zcGVsY2h1cmNoMTI1MCJ9",
+
+  // givingUrl is for card giving (Zeffy), once the account exists. Until
+  // then it stays "" and no card button shows.
   givingUrl:      "",
 
   // Social media. Leave a line empty ("") to hide that icon.
@@ -365,25 +373,17 @@ var SITE = {
 
   /* --- Giving button ---------------------------------------------------- */
 
+  // Card giving (Zeffy). Until the church has a giving link this shows
+  // nothing: Zelle, the offering and checks by mail are all on the page.
   function buildGiving() {
     Array.prototype.forEach.call(document.querySelectorAll("[data-give-button]"), function (node) {
-      if (SITE.givingUrl) {
-        node.innerHTML = '<a class="btn btn--lg" href="' + esc(SITE.givingUrl) + '">' +
-          (KOREAN ? "\uc628\ub77c\uc778 \ud5cc\uae08\ud558\uae30" : "Give online") + "</a>";
-      } else if (KOREAN) {
-        node.innerHTML =
-          '<p class="notice notice--inline">\uc628\ub77c\uc778 \ud5cc\uae08\uc740 \uc544\uc9c1 ' +
-          "\uc900\ube44\ub418\uc9c0 \uc54a\uc558\uc2b5\ub2c8\ub2e4. \uadf8\ub3d9\uc548\uc5d0\ub294 " +
-          "\uc8fc\uc77c \uc608\ubc30 \uc911\uc5d0\ub098 \uc6b0\ud3b8\uc73c\ub85c \ub4dc\ub9b4 \uc218 " +
-          "\uc788\uc2b5\ub2c8\ub2e4. \ub450 \uac00\uc9c0 \ubaa8\ub450 \uc544\ub798\uc5d0 " +
-          "\uc548\ub0b4\ub418\uc5b4 \uc788\uc2b5\ub2c8\ub2e4.</p>";
-      } else {
-        node.innerHTML =
-          '<p class="notice notice--inline">Online giving is not set up yet. ' +
-          "Until it is, you can give in the Sunday service or by mail \u2014 both are below.</p>";
-      }
+      node.innerHTML = SITE.givingUrl
+        ? '<a class="btn btn--lg" href="' + esc(SITE.givingUrl) + '">' +
+          (KOREAN ? "\uce74\ub4dc\ub85c \ud5cc\uae08\ud558\uae30" : "Give by card") + "</a>"
+        : "";
     });
   }
+
 
   /* --- Contact form ----------------------------------------------------- */
 

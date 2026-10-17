@@ -215,6 +215,12 @@ when the Sunday time changes.
 `zoomSundayPasscode` or `zoomMorningUrl`. They appear on the home page and
 the Events page.
 
+**"Change the Zelle code."** Replace `assets/img/zelle-qr.png` with the new
+code — cut out on its own, with a white margin and no rounded corners — and
+put the address it points to in `zelleUrl` in `site.js`. Read the code before
+publishing it: it must hold the church's name, never a personal phone number
+or email.
+
 **"Add an event."**
 Copy a block in `assets/js/events.js`. Date must be `YYYY-MM-DD`. Ask for
 time and location if they did not say. `image` and `link` may be `""`. Do not

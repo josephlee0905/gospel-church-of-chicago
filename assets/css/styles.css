@@ -581,3 +581,15 @@ a:hover { color: var(--clay); }
   line-height: 1.1; color: var(--ink);
 }
 .times__note { font-size: 0.9375rem; color: var(--muted); }
+
+/* --- Zelle code ----------------------------------------------------------- */
+
+/* A plain white square, never the arched photo frame: a QR code with its
+   corners clipped will not scan. */
+.qr { text-align: center; }
+.qr a {
+  display: inline-block; background: var(--paper); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 1rem;
+}
+.qr img { display: block; width: 15rem; max-width: 100%; height: auto; }
+.qr p { margin-top: 0.75rem; font-size: 0.875rem; color: var(--muted); }
