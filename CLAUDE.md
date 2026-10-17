@@ -179,6 +179,9 @@ it. A church website has nothing to gain that is worth that.
 Adding a fourth is a decision for the church, not a convenience while
 editing. Raise it with them; do not just do it.
 
+Zelle and the Google Forms for prayer requests and the connect card are
+**links out**, not embeds: nothing of theirs loads on these pages.
+
 ---
 
 ## Content still to be written
@@ -220,6 +223,12 @@ code — cut out on its own, with a white margin and no rounded corners — and
 put the address it points to in `zelleUrl` in `site.js`. Read the code before
 publishing it: it must hold the church's name, never a personal phone number
 or email.
+
+**"Link the prayer request or connect card form."** Paste the Google Form's
+link into `prayerFormUrl` or `connectFormUrl` in `site.js`. Until a link is
+there, the button opens an email to the church instead. The prayer form must
+not collect email addresses or require sign-in — that is what keeps it
+anonymous; CONTENT-CHECKLIST.md has the settings.
 
 **"Add an event."**
 Copy a block in `assets/js/events.js`. Date must be `YYYY-MM-DD`. Ask for

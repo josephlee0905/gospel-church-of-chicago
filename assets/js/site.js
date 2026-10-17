@@ -85,6 +85,12 @@ var SITE = {
   // an email address instead of a form, so nothing is ever broken.
   contactFormUrl: "",
 
+  // Prayer requests and the connect card: Google Forms in the church's own
+  // Google account. Paste each form's link here. Until a link is set, its
+  // button opens an email to the church instead, so it always works.
+  prayerFormUrl:  "",
+  connectFormUrl: "",
+
   /* --- Menu ------------------------------------------------------------
      The links across the top of every page. To remove a page, delete its
      line. To add one, copy a line and change both parts.               */
@@ -464,6 +470,30 @@ var SITE = {
     if (skip) header.parentNode.insertBefore(skip, bar);
   }
 
+  /* --- Prayer request and connect card --------------------------------- */
+
+  // Buttons marked data-form="prayer" or data-form="connect" open the
+  // church's Google Form. Until the form exists they open an email to the
+  // church with the subject filled in. A note marked data-form-note shows
+  // only once the form exists, because it promises things -- like sending a
+  // prayer request without your name -- that an email cannot.
+  function buildForms() {
+    var forms = {
+      prayer:  { url: SITE.prayerFormUrl,  subject: KOREAN ? "\uae30\ub3c4\uc81c\ubaa9" : "Prayer request" },
+      connect: { url: SITE.connectFormUrl, subject: KOREAN ? "\uc0c8\uac00\uc871 \uce74\ub4dc" : "Connect card" }
+    };
+    Array.prototype.forEach.call(document.querySelectorAll("[data-form]"), function (node) {
+      var form = forms[node.getAttribute("data-form")];
+      if (!form) return;
+      node.setAttribute("href", form.url ||
+        "mailto:" + SITE.email + "?subject=" + encodeURIComponent(form.subject));
+    });
+    Array.prototype.forEach.call(document.querySelectorAll("[data-form-note]"), function (node) {
+      var form = forms[node.getAttribute("data-form-note")];
+      node.hidden = !(form && form.url);
+    });
+  }
+
   function start() {
     buildHeader();
     buildTimesBar();
@@ -472,6 +502,7 @@ var SITE = {
     buildSermons();
     buildGiving();
     buildContactForm();
+    buildForms();
     buildMap();
     if (window.GCC_renderEvents) window.GCC_renderEvents(ROOT);
   }
