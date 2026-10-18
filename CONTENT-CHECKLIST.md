@@ -92,46 +92,30 @@ Zelle, the Sunday offering and checks by mail all work today.
 
 ---
 
-## 1b. Prayer requests and the connect card — two Google Forms
+## 1b. Prayer requests and the connect card — done
 
-The buttons are already on the site: **Send a prayer request** on the Contact
-page and the Korean home page, and **Fill in a connect card** on the Contact
-and Visit pages, in both languages. Until the forms exist, each button opens
-an email to the church instead, so nothing is broken in the meantime.
+- [x] ~~Both Google Forms made~~ in the church's account,
+      gospelchurch1250@gmail.com, and linked from the site:
+      - **Prayer request** — https://forms.gle/aSoHW8noEVgsNBJv8 — the
+        Contact page and the Korean home page
+      - **Connect card** — https://forms.gle/GpNKn7hmW9f3aTRFA — the Contact
+        and Visit pages
+      Both questions and wording, in English and Korean, were checked against
+      the plan, and both forms were opened by a visitor who is not signed in to
+      Google: they show every question and a Submit button straight away.
+- [ ] Optional: in each form, **Responses → ⋮ → Get email notifications for
+      new responses**, so a new prayer request lands in the church inbox
 
-Make both forms while signed in to the **church's** Google account
-(gospelchurch1250@gmail.com), not a personal one, so the requests belong to
-the church. Go to forms.google.com and choose **Blank form**.
+**If anyone edits these forms later**, two settings must stay as they are, or
+the prayer form stops being anonymous:
 
-**Prayer request** — title it *Prayer request · 기도제목*
+- **Settings → Responses → Collect email addresses → Do not collect**
+- **Settings → Responses → Limit to 1 response → off** (if on, people must
+  sign in to Google, which tells you who they are)
 
-- [ ] *What can we pray for? · 기도제목* — **Paragraph**, required
-- [ ] *Your name (optional) · 이름 (선택)* — **Short answer**, not required
-- [ ] *Your email, if you would like a reply (optional) · 이메일 (선택)* —
-      **Short answer**, not required
-
-**Connect card** — title it *Connect card · 새가족 카드*
-
-- [ ] *Your name · 이름* — **Short answer**, required
-- [ ] *Email · 이메일* — **Short answer**, not required
-- [ ] *Phone · 전화번호* — **Short answer**, not required
-- [ ] *I would like to… · 원하시는 것* — **Checkboxes**: Meet a pastor ·
-      목사님 만나기 / Learn more about the church · 교회 알아보기 / Join a
-      group · 소그룹 참여 / Talk about baptism · 세례 상담
-- [ ] *Anything else? · 그 밖에* — **Paragraph**, not required
-
-**Then, in each form — these two settings are what make it anonymous:**
-
-- [ ] **Settings → Responses → Collect email addresses → Do not collect.**
-      Otherwise Google records who sent it
-- [ ] **Settings → Responses → Limit to 1 response → off.** If this is on,
-      people must sign in to Google, which tells you exactly who they are
-- [ ] **Responses → ⋮ → Get email notifications for new responses**, so a
-      new prayer request is not sitting unread
-- [ ] **Send → the link icon → Copy**, and send both links to Claude. Each
-      goes into one line of `assets/js/site.js` (`prayerFormUrl`,
-      `connectFormUrl`), and the line "your name and email are optional"
-      appears under the prayer button at the same moment
+To edit them: sign in as gospelchurch1250@gmail.com and go to
+forms.google.com. Changing the questions there never needs a website change;
+the site only holds the two links, in `assets/js/site.js`.
 
 ---
 

@@ -87,8 +87,8 @@ var SITE = {
   // Prayer requests and the connect card: Google Forms in the church's own
   // Google account. Paste each form's link here. Until a link is set, its
   // button opens an email to the church instead, so it always works.
-  prayerFormUrl:  "",
-  connectFormUrl: "",
+  prayerFormUrl:  "https://forms.gle/aSoHW8noEVgsNBJv8",
+  connectFormUrl: "https://forms.gle/GpNKn7hmW9f3aTRFA",
 
   /* --- Menu ------------------------------------------------------------
      The links across the top of every page. To remove a page, delete its
