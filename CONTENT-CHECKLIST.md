@@ -200,6 +200,9 @@ so a Korean-speaking visitor never has to read English to find anything.
       a guess** — the 2006 filing gives the English as Korean Jang-Sung
       Presbyterian Church, but nobody has said how the church wrote it in
       Korean
+- [ ] On the same page, Joseph Lee is now **영어부 리더** (English Ministry
+      leader), no longer 부목사. Worth Rev. Lee confirming that is the term
+      the church uses in Korean
 
 **About**
 
