@@ -284,6 +284,49 @@ picture is now a real photograph. What follows is about quality, not gaps.
 
 ---
 
+## 4b. The website's address — gospelchurchofchicago.org
+
+**Decided:** the new site will be **gospelchurchofchicago.org**. It was
+unregistered when checked on 26 October 2026. The old site at
+gospelchurch1.com is being retired.
+
+**1. Buy it** (about 10 minutes) — at **porkbun.com**, $7.98 the first year,
+then $11.84 a year:
+
+- [ ] Search **gospelchurchofchicago.org** and add the .org result to the cart.
+      Say no to any extras (email, hosting, website builder) — none are needed.
+      Privacy for the owner's details is free and included
+- [ ] Create the account with the church's email, **gospelchurch1250@gmail.com**,
+      so the church owns the name, not a person. Turn on two-step sign-in when
+      offered
+- [ ] Owner details: organization **Oneness Church of Chicago** (the legal
+      name), 1250 E. Golf Road, Des Plaines, IL 60016. These stay private
+- [ ] Pay, ideally with a church card
+- [ ] Make sure **Auto Renew** is on. If the name ever lapses, the site goes dark
+
+**2. Point it at the website** (about 5 minutes, in Porkbun):
+
+- [ ] Domain Management → **DNS** next to the name
+- [ ] Delete the records Porkbun adds by default (they point at a "parked" page)
+- [ ] Add four records, each **Type A**, **Host** left blank:
+      `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+- [ ] Add one record: **Type CNAME**, **Host** `www`, **Answer**
+      `josephlee0905.github.io`
+- [ ] Tell Claude it is done
+
+**3. On launch day** (Claude, with one GitHub setting from the church): tell
+GitHub Pages to use the name, turn on HTTPS, and change every page's
+canonical link from the github.io address to the new one. Previews then live
+at gospelchurchofchicago.org/preview/<branch>/.
+
+**4. Retiring gospelchurch1.com:** it is paid until 8 January 2027. Once the
+new site is live, set it at Gabia/Cafe24 to **forward** to the new address and
+let it run until it expires, so old bulletins and bookmarks still arrive
+somewhere. Before switching, save anything on the old site worth keeping —
+bulletins, mission posts, photos.
+
+---
+
 ## 5. Accounts to hand over
 
 The brief asks that the church own everything. Before launch, confirm the
