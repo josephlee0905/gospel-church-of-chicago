@@ -255,11 +255,23 @@ picture is now a real photograph. What follows is about quality, not gaps.
 - [x] ~~The church building from Golf Road~~ — taken from the old site's
       교회안내 page, and the only photograph there with nobody in it, so the
       split does not affect it. It is the Contact page header
-- [ ] **Sunday worship** — still missing. There is no photograph of a service
-      in progress taken since the split, so other pictures stand in for it
-- [ ] **A welcome at the door** — same
-- [ ] A few slots reuse the same photograph. Nothing looks wrong, but three
-      or four new pictures from a single Sunday would fix it in one morning
+- [x] ~~**Sunday worship**~~ — a service seen from the back of the sanctuary,
+      choir in front, is now on the Visit page (Your first Sunday) and, cropped
+      wide to show the *Offering Prayer* screens, as the Give page header
+- [x] ~~Retreat photos replaced~~ with photos from church, taken this past
+      year: two moments of the church praying over expecting parents (About
+      header, Events header), the New Year's Eve service (About, and the
+      Adults cards), and a teaching session in the fellowship hall (the Young
+      Adults cards). The congregation photo had been on six pages; it is now
+      only the home page's main photograph, which was kept on purpose
+- [ ] **Children** — the Children cards and the Ministries header still use a
+      retreat photograph. A photo of the children's class on a Sunday would
+      replace it, and the Visit page's "Coming with kids" photo too
+- [ ] **A welcome at the door** — still missing
+- One photo offered was not used: the long line of members reading Scripture
+  at the front. It is a screenshot of a video, so it is blurry, and a row of
+  the computer's taskbar icons runs across it at head height. The original
+  photo or video file would be worth having
 - [x] ~~Photographs from the mission trips~~ — five, taken from the church's
       own mission posts: Brazil (Sept 2026), Paraguay (2025), Costa Rica
       (2025), plus Rev. Lee preaching in Brazil and a training seminar for the
