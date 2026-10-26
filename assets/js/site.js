@@ -60,7 +60,7 @@ var SITE = {
   //
   // To change which sermon plays, replace the code below. Leave it as ""
   // and the page shows only the button.
-  latestSermonId: "U9A2v_rlbSY",
+  latestSermonId: "NeETL4HAq6s",
   youtubeChannelUrl: "https://www.youtube.com/@gospelchurchofchicago3850",
 
   // Give page. The website never handles money itself -- these only send
