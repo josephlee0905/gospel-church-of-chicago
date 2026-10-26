@@ -264,9 +264,11 @@ picture is now a real photograph. What follows is about quality, not gaps.
       Adults cards), and a teaching session in the fellowship hall (the Young
       Adults cards). The congregation photo had been on six pages; it is now
       only the home page's main photograph, which was kept on purpose
-- [ ] **Children** — the Children cards and the Ministries header still use a
-      retreat photograph. A photo of the children's class on a Sunday would
-      replace it, and the Visit page's "Coming with kids" photo too
+- [x] ~~**Children**~~ — the Children cards and the Ministries header now show
+      the children at the front of the sanctuary singing with a teacher, in
+      place of the retreat photo by the fireplace. The same photo, uncropped,
+      is also the Visit and Sermons header
+- [ ] The Visit page's "Coming with kids" photo is still from the retreat
 - [ ] **A welcome at the door** — still missing
 - One photo offered was not used: the long line of members reading Scripture
   at the front. It is a screenshot of a video, so it is blurry, and a row of
