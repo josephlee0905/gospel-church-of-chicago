@@ -124,6 +124,11 @@ the site only holds the two links, in `assets/js/site.js`.
 - [x] ~~YouTube sermon playlist ID~~ — in place.
 - [x] ~~Sermons on the site.~~ One recent sermon plays on the Sermons page
       and the home page, with a button through to the full playlist.
+- [x] ~~English Ministry sermons.~~ The Sermons page has a second player,
+      under the Sunday one, showing the newest video in the English Ministry
+      playlist, with a button through to the whole playlist. Settings:
+      `englishPlaylistId` and `englishSermonId`. Add each week's English
+      sermon to that playlist and the site picks it up from there.
 
       Why not the whole playlist: YouTube will not play a playlist on another
       website if any video in it has embedding switched off, and the church's
@@ -139,8 +144,8 @@ the site only holds the two links, in `assets/js/site.js`.
       **It has not run yet, and cannot until the site is launched.** GitHub
       only runs a scheduled job from the `main` branch, and this job — like
       everything else built so far — is still on the preview branch. Until
-      launch, the sermon is updated by hand. It was last set to the
-      11 October 2026 service.
+      launch, a scheduled Claude task does the same job on Sunday and
+      Monday afternoons.
 
       It reads the channel rather than a playlist, because the old 주일예배
       playlist stopped being updated in 2020 while the services carried on
@@ -151,6 +156,10 @@ the site only holds the two links, in `assets/js/site.js`.
 
       It never puts up a video that cannot play, and if it cannot reach
       YouTube it fails loudly rather than quietly.
+
+      The same job also puts up the newest video in the English Ministry
+      playlist. A problem with that playlist only shows a warning, so it can
+      never hold back the Sunday sermon.
 
       To run it now: **Actions** → *Use the newest Sunday sermon* → **Run
       workflow**. To switch it off: delete
@@ -203,6 +212,9 @@ so a Korean-speaking visitor never has to read English to find anything.
 - [ ] On the same page, Joseph Lee is now **영어부 리더** (English Ministry
       leader), no longer 부목사. Worth Rev. Lee confirming that is the term
       the church uses in Korean
+- [ ] On 설교, the new English Ministry section: "영어 예배는 한국어 예배와
+      같은 시간에 다른 방에서 드려지며, 설교는 따로 재생목록에 모아
+      두었습니다." and the button "영어부 설교 모두 보기"
 
 **About**
 

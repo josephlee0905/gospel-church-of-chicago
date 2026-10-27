@@ -61,6 +61,11 @@ var SITE = {
   // To change which sermon plays, replace the code below. Leave it as ""
   // and the page shows only the button.
   latestSermonId: "NeETL4HAq6s",
+
+  // The English Ministry's own playlist, and the newest sermon in it. The
+  // weekly job keeps englishSermonId current, just as it does latestSermonId.
+  englishPlaylistId: "PLXgMhGQD-cqI",
+  englishSermonId:   "cl7gUwdJzvo",
   youtubeChannelUrl: "https://www.youtube.com/@gospelchurchofchicago3850",
 
   // Give page. The website never handles money itself -- these only send
@@ -333,10 +338,30 @@ var SITE = {
 
   /* --- The sermon on the page -------------------------------------------- */
 
-  function buildSermons() {
-    var mount = document.getElementById("sermon-player");
-    if (!mount) return;
+  // One sermon player: the video, and a button through to the rest. With no
+  // video chosen yet it says so instead, so a player is never blank.
+  function sermonPlayer(mount, id, title, moreHref, moreLabel, soon) {
+    if (!id) {
+      mount.innerHTML = '<div class="notice"><p>' + soon + "</p></div>";
+      return;
+    }
+    mount.innerHTML =
+      '<div class="video">' +
+        '<iframe src="https://www.youtube-nocookie.com/embed/' +
+          encodeURIComponent(id) + '" title="' + esc(title) +
+          '" loading="lazy" allowfullscreen ' +
+          'allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture">' +
+        "</iframe>" +
+      "</div>" +
+      (moreHref
+        ? '<p class="actions"><a class="btn btn--outline" href="' + esc(moreHref) + '">' +
+          esc(moreLabel) + "</a></p>"
+        : "");
+  }
 
+  // Two players: the Sunday sermon (#sermon-player) and the English
+  // Ministry's (#english-sermon-player). Each page fills whichever it has.
+  function buildSermons() {
     var korean = KOREAN;
 
     var channelLink = SITE.youtubeChannelUrl
@@ -344,35 +369,31 @@ var SITE = {
         (korean ? "\uad50\ud68c \uc720\ud29c\ube0c \ucc44\ub110" : "YouTube channel") + "</a>"
       : "";
 
-    // No sermon chosen yet: say so, and send people to the channel.
-    if (!SITE.latestSermonId) {
-      mount.innerHTML =
-        '<div class="notice"><p>' +
-          (korean
-            ? "<strong>\uc124\uad50 \uc601\uc0c1\uc740 \uacf3 \uc774\uacf3\uc5d0 \uc62c\ub77c\uc635\ub2c8\ub2e4.</strong>" +
-              (channelLink ? " \uadf8\ub3d9\uc548\uc5d0\ub294 " + channelLink + "\uc5d0\uc11c \ubcf4\uc2e4 \uc218 \uc788\uc2b5\ub2c8\ub2e4." : "")
-            : "<strong>Sermons will appear here soon.</strong>" +
-              (channelLink ? " In the meantime you can watch them on our " + channelLink + "." : "")) +
-        "</p></div>";
-      return;
+    var sunday = document.getElementById("sermon-player");
+    if (sunday) {
+      sermonPlayer(sunday, SITE.latestSermonId,
+        korean ? churchName + " \uc8fc\uc77c \uc124\uad50" : "A sermon from " + SITE.churchName,
+        SITE.youtubeChannelUrl ? SITE.youtubeChannelUrl + "/videos" : "",
+        korean ? "\uc9c0\ub09c \uc124\uad50 \ubaa8\ub450 \ubcf4\uae30" : "All our sermons",
+        korean
+          ? "<strong>\uc124\uad50 \uc601\uc0c1\uc740 \uace7 \uc774\uacf3\uc5d0 \uc62c\ub77c\uc635\ub2c8\ub2e4.</strong>" +
+            (channelLink ? " \uadf8\ub3d9\uc548\uc5d0\ub294 " + channelLink + "\uc5d0\uc11c \ubcf4\uc2e4 \uc218 \uc788\uc2b5\ub2c8\ub2e4." : "")
+          : "<strong>Sermons will appear here soon.</strong>" +
+            (channelLink ? " In the meantime you can watch them on our " + channelLink + "." : ""));
     }
 
-    var more = SITE.youtubeChannelUrl
-      ? '<p class="actions"><a class="btn btn--outline" href="' +
-        esc(SITE.youtubeChannelUrl + "/videos") + '">' +
-        (korean ? "\uc9c0\ub09c \uc124\uad50 \ubaa8\ub450 \ubcf4\uae30" : "All our sermons") + "</a></p>"
-      : "";
-
-    mount.innerHTML =
-      '<div class="video">' +
-        '<iframe src="https://www.youtube-nocookie.com/embed/' +
-          encodeURIComponent(SITE.latestSermonId) + '" title="' +
-          esc(korean ? churchName + " \uc8fc\uc77c \uc124\uad50"
-                     : "A sermon from " + SITE.churchName) +
-          '" loading="lazy" allowfullscreen ' +
-          'allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture">' +
-        "</iframe>" +
-      "</div>" + more;
+    var english = document.getElementById("english-sermon-player");
+    if (english) {
+      sermonPlayer(english, SITE.englishSermonId,
+        korean ? churchName + " \uc601\uc5b4\ubd80 \uc124\uad50" : "An English Ministry sermon from " + SITE.churchName,
+        SITE.englishPlaylistId
+          ? "https://www.youtube.com/playlist?list=" + encodeURIComponent(SITE.englishPlaylistId)
+          : "",
+        korean ? "\uc601\uc5b4\ubd80 \uc124\uad50 \ubaa8\ub450 \ubcf4\uae30" : "All English Ministry sermons",
+        korean
+          ? "<strong>\uc601\uc5b4\ubd80 \uc124\uad50 \uc601\uc0c1\uc740 \uace7 \uc774\uacf3\uc5d0 \uc62c\ub77c\uc635\ub2c8\ub2e4.</strong>"
+          : "<strong>English Ministry sermons will appear here soon.</strong>");
+    }
   }
 
   /* --- Giving button ---------------------------------------------------- */

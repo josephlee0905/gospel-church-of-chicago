@@ -1,4 +1,6 @@
-/* Finds the newest sermon in the Sunday playlist and puts it on the website.
+/* Finds the newest sermons on YouTube and puts them on the website: the
+ * Sunday sermon from the church's channel, and the newest sermon in the
+ * English Ministry's playlist.
  *
  * Run every Monday by .github/workflows/newest-sermon.yml. Nobody needs to
  * run this by hand.
@@ -13,11 +15,15 @@
  *      with embedding switched off would otherwise put "Video unavailable" on
  *      the home page and leave it there for a week.
  *   4. Writes that video into assets/js/site.js, if it is not already there.
+ *   5. Does the same for the English Ministry playlist.
  *
  * If it cannot reach YouTube it stops and reports a failure, so somebody
  * hears about it. If it reaches YouTube and simply finds nothing playable,
  * it leaves the site alone -- last week's sermon keeps playing, which is a
  * perfectly good page.
+ *
+ * The English Ministry sermon never stops the job. If its playlist cannot be
+ * read, the job says so in a warning and still puts up the Sunday sermon.
  *
  * To switch the whole thing off: delete .github/workflows/newest-sermon.yml.
  * The website carries on exactly as it is.
@@ -34,6 +40,11 @@ function report(changed, note) {
   if (process.env.GITHUB_OUTPUT) {
     appendFileSync(process.env.GITHUB_OUTPUT, `changed=${changed}\n`);
   }
+}
+
+// Shown as a yellow warning on the job's page, without failing it.
+function warn(note) {
+  console.log((process.env.GITHUB_ACTIONS ? "::warning::" : "Warning: ") + note);
 }
 
 /* --- Which playlist ------------------------------------------------------ */
@@ -61,55 +72,31 @@ if (!current) {
 }
 const currentId = current[1];
 
-/* --- What is in it ------------------------------------------------------- */
+/* --- Reading YouTube ---------------------------------------------------- */
 
-const feedUrl =
-  "https://www.youtube.com/feeds/videos.xml?channel_id=" +
-  encodeURIComponent(channelId);
-
-let feed;
-try {
+// The videos in a YouTube listing, newest first. `keep` decides which count.
+// Throws if YouTube cannot be reached.
+async function newestVideos(feedUrl, keep) {
   const response = await fetch(feedUrl);
   if (!response.ok) {
     throw new Error(`YouTube answered ${response.status}`);
   }
-  feed = await response.text();
-} catch (error) {
-  console.error(
-    `Could not read the church's YouTube channel: ${error.message}\n` +
-    `Nothing has been changed. If this keeps happening, check that the ` +
-    `channel is still public: ${feedUrl}`
-  );
-  process.exit(1);
-}
+  const feed = await response.text();
 
-// Each entry carries its video id and the date it went up.
-const entries = [];
-for (const block of feed.split("<entry>").slice(1)) {
-  const id = block.match(/<yt:videoId>([^<]+)<\/yt:videoId>/);
-  const when = block.match(/<published>([^<]+)<\/published>/);
-  const name = block.match(/<title>([^<]*)<\/title>/);
-  const title = name ? name[1] : "";
-  // The channel carries the Wednesday and Friday services too. Only the
-  // Sunday one belongs on the front of the website, and the church titles
-  // every one of them with the Korean for "Sunday service".
-  if (id && title.includes(SUNDAY)) {
-    entries.push({ id: id[1], when: when ? Date.parse(when[1]) : 0 });
+  // Each entry carries its video id and the date it went up.
+  const entries = [];
+  for (const block of feed.split("<entry>").slice(1)) {
+    const id = block.match(/<yt:videoId>([^<]+)<\/yt:videoId>/);
+    const when = block.match(/<published>([^<]+)<\/published>/);
+    const name = block.match(/<title>([^<]*)<\/title>/);
+    const title = name ? name[1] : "";
+    if (id && keep(title)) {
+      entries.push({ id: id[1], when: when ? Date.parse(when[1]) : 0 });
+    }
   }
+  entries.sort((a, b) => b.when - a.when);
+  return entries;
 }
-
-if (!entries.length) {
-  console.error(
-    `No Sunday service was found among the newest videos on the channel. ` +
-    `The church titles them with ${SUNDAY}; if that ever changes, this job ` +
-    `needs changing with it. Nothing has been changed.`
-  );
-  process.exit(1);
-}
-
-entries.sort((a, b) => b.when - a.when);
-
-/* --- Which of them will actually play on the site ------------------------ */
 
 // YouTube's oEmbed address answers 200 for a video that is allowed to play
 // elsewhere, and refuses for one that is not. That is the only reliable way
@@ -126,42 +113,122 @@ async function willPlayOffYouTube(id) {
   }
 }
 
-let chosen = null;
-for (const entry of entries.slice(0, HOW_MANY_TO_TRY)) {
-  if (await willPlayOffYouTube(entry.id)) {
-    chosen = entry.id;
-    break;
+async function firstPlayable(entries) {
+  for (const entry of entries.slice(0, HOW_MANY_TO_TRY)) {
+    if (await willPlayOffYouTube(entry.id)) return entry.id;
+    console.log(`${entry.id} is not allowed to play on other websites; skipping.`);
   }
-  console.log(`${entry.id} is not allowed to play on other websites; skipping.`);
+  return null;
 }
 
-if (!chosen) {
-  report(
-    false,
-    `None of the newest ${HOW_MANY_TO_TRY} sermons is allowed to play on ` +
-    `another website, so the site keeps the one it has. To fix that in ` +
-    `YouTube Studio: Content -> Select all -> Edit -> Embedding -> On, on ` +
-    `the Live tab as well as Uploads, a page at a time.`
+const EMBEDDING_HELP =
+  `To fix that in YouTube Studio: Content -> Select all -> Edit -> ` +
+  `Embedding -> On, on the Live tab as well as Uploads, a page at a time.`;
+
+let updated = settings;
+const notes = [];
+
+/* --- The Sunday sermon --------------------------------------------------- */
+
+const feedUrl =
+  "https://www.youtube.com/feeds/videos.xml?channel_id=" +
+  encodeURIComponent(channelId);
+
+let entries;
+try {
+  // The channel carries the Wednesday and Friday services too. Only the
+  // Sunday one belongs on the front of the website, and the church titles
+  // every one of them with the Korean for "Sunday service".
+  entries = await newestVideos(feedUrl, (title) => title.includes(SUNDAY));
+} catch (error) {
+  console.error(
+    `Could not read the church's YouTube channel: ${error.message}\n` +
+    `Nothing has been changed. If this keeps happening, check that the ` +
+    `channel is still public: ${feedUrl}`
   );
-  process.exit(0);
-}
-
-if (chosen === currentId) {
-  report(false, `The newest playable sermon is already on the site.`);
-  process.exit(0);
-}
-
-/* --- Put it on the site -------------------------------------------------- */
-
-const updated = settings.replace(
-  /latestSermonId:\s*"[^"]*"/,
-  `latestSermonId: "${chosen}"`
-);
-
-if (updated === settings) {
-  console.error(`Could not write the new sermon into ${SETTINGS}.`);
   process.exit(1);
 }
 
-writeFileSync(SETTINGS, updated);
-report(true, `The sermon on the site is now ${chosen} (it was ${currentId}).`);
+if (!entries.length) {
+  console.error(
+    `No Sunday service was found among the newest videos on the channel. ` +
+    `The church titles them with ${SUNDAY}; if that ever changes, this job ` +
+    `needs changing with it. Nothing has been changed.`
+  );
+  process.exit(1);
+}
+
+const chosen = await firstPlayable(entries);
+
+if (!chosen) {
+  notes.push(
+    `None of the newest ${HOW_MANY_TO_TRY} sermons is allowed to play on ` +
+    `another website, so the site keeps the one it has. ${EMBEDDING_HELP}`
+  );
+} else if (chosen === currentId) {
+  notes.push(`The newest playable sermon is already on the site.`);
+} else {
+  updated = updated.replace(
+    /latestSermonId:\s*"[^"]*"/,
+    `latestSermonId: "${chosen}"`
+  );
+  notes.push(`The sermon on the site is now ${chosen} (it was ${currentId}).`);
+}
+
+/* --- The English Ministry sermon ----------------------------------------- */
+
+const playlist = settings.match(/englishPlaylistId:\s*"([^"]*)"/);
+const english = settings.match(/englishSermonId:\s*"([^"]*)"/);
+
+if (!playlist || !playlist[1]) {
+  notes.push(`No English Ministry playlist is set, so there is nothing more to look up.`);
+} else if (!english) {
+  warn(
+    `${SETTINGS} has an englishPlaylistId but no englishSermonId line, so ` +
+    `there is nowhere to put the English Ministry sermon.`
+  );
+} else {
+  const playlistUrl =
+    "https://www.youtube.com/feeds/videos.xml?playlist_id=" +
+    encodeURIComponent(playlist[1]);
+  let englishEntries = null;
+  try {
+    // Everything in this playlist is an English Ministry sermon.
+    englishEntries = await newestVideos(playlistUrl, () => true);
+  } catch (error) {
+    warn(
+      `Could not read the English Ministry playlist: ${error.message}. ` +
+      `Its sermon on the site stays as it is. Check that the playlist is ` +
+      `still public: ${playlistUrl}`
+    );
+  }
+  if (englishEntries && !englishEntries.length) {
+    warn(`The English Ministry playlist is empty, so its sermon on the site stays as it is.`);
+  } else if (englishEntries) {
+    const englishChosen = await firstPlayable(englishEntries);
+    if (!englishChosen) {
+      warn(
+        `None of the newest English Ministry sermons is allowed to play on ` +
+        `another website, so the site keeps the one it has. ${EMBEDDING_HELP}`
+      );
+    } else if (englishChosen === english[1]) {
+      notes.push(`The newest English Ministry sermon is already on the site.`);
+    } else {
+      updated = updated.replace(
+        /englishSermonId:(\s*)"[^"]*"/,
+        `englishSermonId:$1"${englishChosen}"`
+      );
+      notes.push(
+        `The English Ministry sermon on the site is now ${englishChosen} ` +
+        `(it was ${english[1] || "empty"}).`
+      );
+    }
+  }
+}
+
+/* --- Put them on the site ------------------------------------------------ */
+
+if (updated !== settings) {
+  writeFileSync(SETTINGS, updated);
+}
+report(updated !== settings, notes.join("\n"));

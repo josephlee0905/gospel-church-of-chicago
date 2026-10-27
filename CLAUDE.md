@@ -221,6 +221,11 @@ when the Sunday time changes.
 `zoomSundayPasscode` or `zoomMorningUrl`. They appear on the home page and
 the Events page.
 
+**"The sermon on the site is old."** The Sermons page has two players: the
+Sunday sermon (`latestSermonId`) and the English Ministry sermon
+(`englishSermonId`, from the playlist in `englishPlaylistId`). The weekly job
+keeps both current. To catch up by hand, run `node .github/newest-sermon.mjs`.
+
 **"Change the Zelle code."** Replace `assets/img/zelle-qr.png` with the new
 code — cut out on its own, with a white margin and no rounded corners — and
 put the address it points to in `zelleUrl` in `site.js`. Read the code before

@@ -5,6 +5,9 @@
 # website, and if that is not the one already showing, updates the settings
 # file and republishes the site.
 #
+# It does the same for the English Ministry playlist. A problem there only
+# shows a warning; it never holds back the Sunday sermon.
+#
 # If nothing new is found, nothing happens and the site is left alone.
 # If YouTube cannot be reached, this job fails, which sends an email --
 # that is deliberate, so a quietly broken job does not go unnoticed for
