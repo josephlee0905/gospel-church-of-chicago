@@ -214,7 +214,8 @@ so a Korean-speaking visitor never has to read English to find anything.
       the church uses in Korean
 - [ ] On 설교, the new English Ministry section: "영어 예배는 한국어 예배와
       같은 시간에 다른 방에서 드려지며, 설교는 따로 재생목록에 모아
-      두었습니다." and the button "영어부 설교 모두 보기"
+      두었습니다." and the buttons under the two sermons, "한국어 예배 설교 더
+      보기" and "영어 예배 설교 더 보기"
 
 **About**
 

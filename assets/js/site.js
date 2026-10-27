@@ -373,8 +373,9 @@ var SITE = {
     if (sunday) {
       sermonPlayer(sunday, SITE.latestSermonId,
         korean ? churchName + " \uc8fc\uc77c \uc124\uad50" : "A sermon from " + SITE.churchName,
-        SITE.youtubeChannelUrl ? SITE.youtubeChannelUrl + "/videos" : "",
-        korean ? "\uc9c0\ub09c \uc124\uad50 \ubaa8\ub450 \ubcf4\uae30" : "All our sermons",
+        // The services are streamed, so YouTube files them under Live, not Videos.
+        SITE.youtubeChannelUrl ? SITE.youtubeChannelUrl + "/streams" : "",
+        korean ? "\ud55c\uad6d\uc5b4 \uc608\ubc30 \uc124\uad50 \ub354 \ubcf4\uae30" : "More from the Korean service",
         korean
           ? "<strong>\uc124\uad50 \uc601\uc0c1\uc740 \uace7 \uc774\uacf3\uc5d0 \uc62c\ub77c\uc635\ub2c8\ub2e4.</strong>" +
             (channelLink ? " \uadf8\ub3d9\uc548\uc5d0\ub294 " + channelLink + "\uc5d0\uc11c \ubcf4\uc2e4 \uc218 \uc788\uc2b5\ub2c8\ub2e4." : "")
@@ -389,7 +390,7 @@ var SITE = {
         SITE.englishPlaylistId
           ? "https://www.youtube.com/playlist?list=" + encodeURIComponent(SITE.englishPlaylistId)
           : "",
-        korean ? "\uc601\uc5b4\ubd80 \uc124\uad50 \ubaa8\ub450 \ubcf4\uae30" : "All English Ministry sermons",
+        korean ? "\uc601\uc5b4 \uc608\ubc30 \uc124\uad50 \ub354 \ubcf4\uae30" : "More from the English service",
         korean
           ? "<strong>\uc601\uc5b4\ubd80 \uc124\uad50 \uc601\uc0c1\uc740 \uace7 \uc774\uacf3\uc5d0 \uc62c\ub77c\uc635\ub2c8\ub2e4.</strong>"
           : "<strong>English Ministry sermons will appear here soon.</strong>");
