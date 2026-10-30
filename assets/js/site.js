@@ -16,7 +16,7 @@ var SITE = {
 
   /* --- The basics ------------------------------------------------------ */
   churchName:     "Gospel Church of Chicago",
-  churchNameKo:   "가스펠 교회",
+  churchNameKo:   "시카고가스펠교회",
   shortName:      "GCC",
   tagline:        "A warm, Christ-centered church in Des Plaines, Illinois, worshipping in Korean and in English.",
   taglineKo:      "\uc77c\ub9ac\ub178\uc774\uc8fc \ub370\uc2a4\ud50c\ub808\uc778\uc2a4\uc5d0\uc11c \ud55c\uad6d\uc5b4\uc640 \uc601\uc5b4\ub85c \uc608\ubc30\ud558\ub294 \uad50\ud68c\uc785\ub2c8\ub2e4.",
@@ -119,7 +119,7 @@ var SITE = {
     { label: "\uc0ac\uc5ed",       href: "ministries.html" },
     { label: "\uc120\uad50",       href: "missions.html"   },
     { label: "\uc124\uad50",       href: "sermons.html"    },
-    { label: "\ud589\uc0ac",       href: "events.html"     }
+    { label: "\uc77c\uc815",       href: "events.html"     }
   ]
 
 };

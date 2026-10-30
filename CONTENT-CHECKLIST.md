@@ -205,13 +205,29 @@ so a Korean-speaking visitor never has to read English to find anything.
       헌금 and 연락처
 - [ ] Two things in particular are worth his eye: the six statements of
       faith on 교회 소개, and the old church names on the same page
-      (장성장로교회 → 임마누엘교회 → 오네스교회 → 가스펠 교회). **장성장로교회 is
+      (장성장로교회 → 임마누엘교회 → 오네스교회 → 시카고가스펠교회). **장성장로교회 is
       a guess** — the 2006 filing gives the English as Korean Jang-Sung
       Presbyterian Church, but nobody has said how the church wrote it in
       Korean
 - [ ] On the same page, Joseph Lee is now **영어부 리더** (English Ministry
       leader), no longer 부목사. Worth Rev. Lee confirming that is the term
       the church uses in Korean
+- [ ] **His greeting on 홈 (담임목사 인사말) is written in his name** and
+      needs his approval, word for word. Two facts in particular: that the
+      church began in **1991** as a small gathering, and "지금까지
+      데스플레인스에서", which says the church has been in Des Plaines the
+      whole time since then. If it moved there later, that line changes
+- [x] ~~A Korean reader's review, 30 October 2026.~~ Made: the name is now
+      **시카고가스펠교회**, as on the old site (it was 가스펠 교회); "저희는
+      누구인가" became 교회 소개 on 홈 and was dropped on 교회 소개, where
+      the page title already says it; 정직한 설교 → 말씀 중심의 설교; the
+      lunch joke → 예배 후 함께 나누는 따뜻한 점심 식사; the 청년 line on
+      홈 and 사역 → 믿음 안에서 오래 함께할 친구가 됩니다; the menu and the
+      events page say **일정** throughout, not 행사; the prayer topics name
+      브라질, 파라과이, 코스타리카 to match 선교 (Panama had stayed in by
+      mistake). Rev. Lee should still read the new lines
+- [x] ~~새벽예배 days.~~ Tuesday through Friday (confirmed by Joseph), not
+      every day. Corrected on both sites
 - [ ] On 설교, the new English Ministry section: "영어 예배는 한국어 예배와
       같은 시간에 다른 방에서 드려지며, 설교는 따로 재생목록에 모아
       두었습니다." and the buttons under the two sermons, "한국어 예배 설교 더
