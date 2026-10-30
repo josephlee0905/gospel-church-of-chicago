@@ -28,7 +28,7 @@ var SITE = {
   // The weekday services. With serviceTime above, these fill the strip at
   // the top of every page, the times on the home page, and the Events and
   // Ministries pages. Change a time here and it changes in all of them.
-  morningTime:    "6:00 AM",      // the early morning service, every day
+  morningTime:    "6:00 AM",      // the early morning service, Tuesday through Friday
   morningTimeKo:  "오전 6시",
   eveningTime:    "8:00 PM",      // Wednesday night and Friday services
   eveningTimeKo:  "저녁 8시",
@@ -453,13 +453,13 @@ var SITE = {
     var items = KOREAN ? [
       [["주일예배", SITE.serviceTimeKo],
        ["주일", SITE.serviceTimeKo]],
-      [["새벽예배", "매일 " + SITE.morningTimeKo],
-       ["새벽예배", SITE.morningTimeKo]],
+      [["새벽예배", "화~금 " + SITE.morningTimeKo],
+       ["새벽 화~금", SITE.morningTimeKo]],
       [["수요·금요예배", SITE.eveningTimeKo],
        ["수·금", SITE.eveningTimeKo]]
     ] : [
       [["Sunday worship", SITE.serviceTime], ["Sunday", SITE.serviceTime]],
-      [["Early morning service", SITE.morningTime + " daily"], ["Daily", SITE.morningTime]],
+      [["Early morning, Tue\u2013Fri", SITE.morningTime], ["Tue\u2013Fri", SITE.morningTime]],
       [["Wednesday & Friday", SITE.eveningTime], ["Wed & Fri", SITE.eveningTime]]
     ];
     var link = KOREAN

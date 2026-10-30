@@ -207,8 +207,8 @@ The check reports how many are left. It does not block publishing.
 One line in `assets/js/site.js`. It updates every page at once — the strip
 at the top of every page, the times on the home page, Events and Ministries.
 Each time has an English and a Korean setting (`serviceTime` and
-`serviceTimeKo`, and so on); change both. `morningTime` is the daily early
-morning service; `eveningTime` is Wednesday night and Friday.
+`serviceTimeKo`, and so on); change both. `morningTime` is the early morning
+service, Tuesday through Friday; `eveningTime` is Wednesday night and Friday.
 
 The church does not publish a phone number. It was taken off every page at
 the church's request; do not put one back unless they ask.
